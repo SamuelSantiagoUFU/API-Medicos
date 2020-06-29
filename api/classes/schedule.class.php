@@ -64,6 +64,64 @@ class Schedule extends Objecto
   }
 
   /**
+   * @function update
+   * @return int
+   * Função que realiza a atualização na tabela
+   */
+  public function update($whereField = [TB_SCHEDULES['id']], $whereValues = null) {
+    if ($whereValues == null)
+      $whereValues = [$this->id];
+    $date = date("Y-m-d H:i:s");
+    $fields = TB_SCHEDULES;
+    array_shift($fields);
+    $qb = new QueryBuilder;
+    try {
+      $result = $qb->table(TB_SCHEDULES['_name'])->fields($fields)
+      ->whereAND(array_map(function ($el) {
+        return $el.' = ?';
+      }, $whereField))->update([
+        $this->id,
+        $this->medic->id,
+        $this->weekday,
+        $this->hourInit,
+        $this->duration,
+        $this->created_at,
+        $date
+      ], $whereValues);
+      if ($result === false) {
+        return ['code' => 0, 'msg' => $this->replaceVars(MSG['no_data'])];
+      }
+    } catch (Exception $e) {
+      return ['code' => 0, 'msg' => $e->getMessage()];
+    }
+    return ['code' => $result, 'msg' => $this->replaceVars(MSG['reg_update'])];
+  }
+
+  /**
+   * @function delete
+   * @return int
+   * Função que realiza a remoção dos dados atuais na tabela
+   */
+  public function delete(int $id = null) {
+    $result = ['code' => 0, 'msg' => $this->replaceVars(MSG['no_data'])];
+    if (!$this->id) {
+      if (!$id) return $result;
+      $this->id = $id;
+    }
+    $qb = new QueryBuilder;
+    try {
+      $result = $qb->table(TB_SCHEDULES['_name'])->where(TB_SCHEDULES['id'].' = ?')->delete($this->id);
+      if ($result === false) {
+        return $result;
+      }
+    } catch (Exception $e) {
+      return ['code' => 0, 'msg' => $e->getMessage()];
+    }
+
+    return ['code' => $result, 'msg' => $this->replaceVars(MSG['reg_delete'])];
+  }
+
+  /**
    * @function get
    * @param int $id
    * @return Schedule
@@ -79,7 +137,7 @@ class Schedule extends Objecto
     if (!$result || empty($result)) {
       return ['code' => 0, 'msg' => $this->replaceVars(MSG['no_reg'])];
     }
-    return $this->loadAttributes($result[0]);
+    return ['code' => 200, 'msg' => $this->replaceVars(MSG['regs_found']), 'result' => $this->loadAttributes($result[0])];
   }
 
   /**
