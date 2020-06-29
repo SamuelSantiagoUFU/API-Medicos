@@ -1,0 +1,7 @@
+RewriteEngine on
+RewriteBase /
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteCond %{HTTP_HOST} ^(www\.)?jefersson\.
+RewriteRule ^(.*)$ /public/$1 [L]
+php_value memory_limit 128M
+php_value output_buffering off
