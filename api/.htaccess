@@ -1,0 +1,6 @@
+RewriteEngine on
+Options -Indexes
+RewriteRule ^(.*)/$ $1 [L,R=301]
+RewriteRule $ index.php [L,QSA]
+php_value memory_limit 128M
+php_value output_buffering off
