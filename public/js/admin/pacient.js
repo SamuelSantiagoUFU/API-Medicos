@@ -57,10 +57,8 @@ function loadTable(query = '') {
           appendChilds(edit, [editButton, blockButton]);
           appendChilds(row, [id, name, sex, tel, end, born, email, edit]);
           body.appendChild(row);
-          $(loadingBar).hide();
         }).catch((error) => M.toast({html: error.message, classes: 'rounded red-text'}));
       });
     }
-    $(loadingBar).hide();
-  }).catch((error) => console.error(error));
+  }).then(() => $(loadingBar).hide()).catch((error) => console.error(error));
 }

@@ -7,7 +7,8 @@ require '../includes/header.php'; require '../includes/navbar.php'?>
     </div>
     <div class="row">
       <div class="input-field col s12">
-        <input type="text" name="query" value="" id="query">
+        <input type="text" name="query" placeholder="Ex. Adelina, Pascoal, Kaique" id="query">
+        <label for="query">Pesquisar pelo nome</label>
       </div>
     </div>
     <div class="row">
