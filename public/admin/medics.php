@@ -6,7 +6,13 @@ require '../includes/header.php'; require '../includes/navbar.php'?>
       <h3 class="col s12 center">Médicos</h3>
     </div>
     <div class="row">
-      <table class="col s12" id="medicsTable">
+      <div class="input-field col s12">
+        <input type="text" name="query" placeholder="Ex. Adelina, Pascoal, Kaique" id="query">
+        <label for="query">Pesquisar pelo nome</label>
+      </div>
+    </div>
+    <div class="row">
+      <table class="col s12 centered responsive-table" id="medicsTable">
         <thead>
           <tr>
             <th>ID</th>
@@ -16,6 +22,7 @@ require '../includes/header.php'; require '../includes/navbar.php'?>
             <th>Registro</th>
             <th>Especialização</th>
             <th>CNS</th>
+            <th><i class="material-icons">edit</i></th>
           </tr>
         </thead>
         <tbody>

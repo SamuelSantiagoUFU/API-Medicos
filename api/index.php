@@ -16,6 +16,8 @@ include_once 'autoload.php';
 (new Autoload);
 // Rotas da api (não modificar caso não seja estritamente necessário)
 $routes = array(
+  '/medic/list' => 'listMedics',
+  '/medic/list/{value:string}' => 'listMedics',
   '/medic/list/specialist/{spec:string}' => 'listMedicsSpec',
   '/medic/list/area/{id:int}' => 'listAvailable',
   '/medic/get/{id:int}' => 'getMedic',

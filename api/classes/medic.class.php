@@ -140,7 +140,7 @@ class Medic extends Person
     foreach ($results as $r) {
       $p = new $this;
       $result['total']++;
-      array_push($result['result'], $p->loadAttributes($r));
+      array_push($result['result'], $p->loadAttributes($r, true));
     }
     $result['code'] = 200;
     $result['msg'] = $this->replaceVars(MSG['regs_found']);
