@@ -11,7 +11,7 @@ $logged = true;//isset($_SESSION['login']) && $_SESSION['login'];
   </div>
 </nav>
 <ul class="sidenav sidenav-fixed" id="navbar-admin">
-  <li><a href="sass.html"><i class="material-icons">schedule</i>Médicos</a></li>
+  <li><a href="/admin/medics.php"><i class="material-icons">schedule</i>Médicos</a></li>
   <li><a href="badges.html"><i class="material-icons">schedule</i>Consultas</a></li>
   <li><a href="collapsible.html"><i class="material-icons">schedule</i>Exames</a></li>
   <li><a href="mobile.html"><i class="material-icons">schedule</i>Pacientes</a></li>
