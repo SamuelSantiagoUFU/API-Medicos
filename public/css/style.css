@@ -1,4 +1,20 @@
-* {
-  margin: 0;
-  padding: 0;
+nav a {
+  color: inherit !important;
+}
+nav {
+  box-shadow: none;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+.sidenav-fixed {
+  box-shadow: none;
+  border-left: 1px solid rgba(0,0,0,0.2);
+}
+header, main, footer {
+  padding-right: 300px;
+}
+
+@media only screen and (max-width : 992px) {
+  header, main, footer {
+    padding-right: 0;
+  }
 }
