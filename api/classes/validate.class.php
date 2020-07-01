@@ -16,8 +16,9 @@ class Validate
 
   public static function validateGET(array $inputs) {
     if (!isset($inputs) || empty($inputs)) return false;
-    foreach ($inputs as $input) {
-      if (!isset($_GET[$input]))
+    array_shift($inputs);
+    foreach ($inputs as $key => $value) {
+      if (!isset($value))
         return false;
     }
     return true;

@@ -1,4 +1,7 @@
 <?php
+if (!Classes\Validate::validatePOST($_POST)) {
+  die(Classes\Base\Parse::toJson(['code'=>0, 'msg'=>MSG['not_valid']]));
+}
 $id = filter_var($_POST['id'], FILTER_VALIDATE_INT);
 $description = filter_var($_POST['desc'], FILTER_SANITIZE_SPECIAL_CHARS);
 $consult = filter_var($_POST['consult'], FILTER_VALIDATE_INT);
