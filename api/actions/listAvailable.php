@@ -66,7 +66,7 @@ if ($consults['total'] == 0) {
     Classes\Cache::createCache('distances-'.$_GET['id'], $dist); // Cria o cache e pronto
   }
   for ($i = 0; $i < count($medicsInConsult); $i++) { // Pra cada médico que tá em consulta que foi pego em (A)
-    if ($dist[$i] <= MISC['min_distance']) { // Verifica se a distância é menor que a informada
+    if ($dist[$i] <= MISC['max_distance']) { // Verifica se a distância é menor que a informada
       array_push($medicsAvailable, $medicsInConsult[$i]); // Se for, adiciona nos médicos disponíveis
     }
   }
