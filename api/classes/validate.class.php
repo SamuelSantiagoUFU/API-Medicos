@@ -7,18 +7,18 @@ class Validate
 {
   public static function validatePOST(array $inputs) {
     if (!isset($inputs) || empty($inputs)) return false;
-    foreach ($inputs as $input) {
-      if (!isset($_POST[$input]))
+    foreach ($inputs as $key=>$value) {
+      if (!isset($_POST[$key]))
         return false;
     }
     return true;
   }
 
   public static function validateGET(array $inputs) {
-    if (!isset($inputs) || empty($inputs)) return false;
     array_shift($inputs);
-    foreach ($inputs as $key => $value) {
-      if (!isset($value))
+    if (!isset($inputs) || empty($inputs)) return false;
+    foreach ($inputs as $key=>$value) {
+      if (!isset($_GET[$key]))
         return false;
     }
     return true;
