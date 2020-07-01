@@ -8,7 +8,7 @@
 ######################################
 define('DB', [
   'host' => 'localhost',
-  'name' => 'api_jefersson',
+  'name' => 'api_teste',
   'user' => 'root',
   'pass' => '',
   'charset' => 'utf8'

@@ -15,6 +15,7 @@ define('TB_CONSULTS', [
   'pacient' => 'pacient',
   'date' => 'date',
   'value' => 'value',
+  'return_from' => 'return_from',
   'done' => 'done',
   'created_at' => 'created_at',
   'updated_at' => 'updated_at'
