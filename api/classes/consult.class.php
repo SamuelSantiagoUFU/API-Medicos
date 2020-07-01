@@ -12,6 +12,7 @@ class Consult extends Objecto
   public $pacient;
   public $date;
   public $value;
+  public $return;
   public $done = false;
   public $created_at;
   public $updated_at;
@@ -30,6 +31,7 @@ class Consult extends Objecto
     $this->date = new \DateTime($result[TB_CONSULTS['date']]);
     $this->value = $result[TB_CONSULTS['value']];
     if ($readed) $this->exams = (new Exam)->listConsult($result[TB_CONSULTS['id']]);
+    $this->return = (new Consult)->get($result[TB_CONSULTS['return_from']] ?? -1, $readed);
     $this->done = $result[TB_CONSULTS['done']] == true;
     $this->created_at = $result[TB_CONSULTS['created_at']];
     $this->updated_at = $result[TB_CONSULTS['updated_at']];
@@ -53,6 +55,7 @@ class Consult extends Objecto
         $this->pacient->id,
         $this->date->format('Y-m-d H:i'),
         $this->value,
+        $this->return->id,
         $this->done,
         $date, $date
       ]);
@@ -86,6 +89,7 @@ class Consult extends Objecto
         $this->pacient->id,
         $this->date->format('Y-m-d H:i'),
         $this->value,
+        $this->return->id,
         $this->done,
         $this->created_at,
         $date

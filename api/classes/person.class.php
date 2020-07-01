@@ -19,6 +19,7 @@ abstract class Person extends Objecto
   public $email;
   public $pass;
   public $rg;
+  public $address;
   public $lat;
   public $lng;
   public $number;
@@ -48,6 +49,7 @@ abstract class Person extends Objecto
     $this->rg = $result[TB_PEOPLE['rg']];
     $this->lat = $result[TB_PEOPLE['lat']];
     $this->lng = $result[TB_PEOPLE['lng']];
+    $this->address = $this->getAddress();
     $this->number = $result[TB_PEOPLE['number']];
     $this->complement = $result[TB_PEOPLE['comp']];
     $this->isActive = (bool)$result[TB_PEOPLE['active']];
@@ -182,6 +184,25 @@ abstract class Person extends Objecto
     $qb = new QueryBuilder;
     $result = $qb->table(TB_PEOPLE['_name'])->fields(TB_PEOPLE['active'])->where(TB_PEOPLE['id'].' = ?')->update(true, $this->id);
     return $result;
+  }
+
+  public function getAddress($lat = null, $lng = null) {
+    if (!$lat) $lat = $this->lat;
+    if (!$lng) $lng = $this->lng;
+    $url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$lng&key={$_ENV['GOOGLE_API_KEY']}";
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    $geoloc = json_decode(curl_exec($ch), true);
+    return $geoloc['results'][0]['formatted_address'];
+  }
+
+  public function getLatLng(string $address) {
+    $address = str_replace(MISC['convert_space'], '+', $address);
+    $url = "https://maps.googleapis.com/maps/api/geocode/json?address=$address&key={$_ENV['GOOGLE_API_KEY']}";
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    $geoloc = json_decode(curl_exec($ch), true);
+    return $geoloc['results'][0]['geometry']['location'];
   }
 }
 

@@ -1,19 +1,21 @@
 <?php
-$medic = new Classes\Medic;
-$medic->name = "Manuela";
-$medic->sex = "F";
-$medic->user = "Manu";
-$medic->email = "manu@eemail.ocm";
-$medic->pass = password_hash("123456789", PASSWORD_DEFAULT);
-$medic->lat = "52,32651651";
-$medic->lng = "52,32651651";
-$medic->number = "452";
-$medic->isActive = true;
-$medic->title = "Dra";
-$medic->type = "CRM";
-$medic->uf = "MG";
-$medic->register = "1235456";
-$medic->clinic = "Interno";
-$medic->cns = "12345";
-echo Classes\Base\Parse::toJson($medic->insert());
+if (!Classes\Validate::validatePOST($_POST)) {
+  die(Classes\Base\Parse::toJson(['code'=>0, 'msg'=>MSG['not_valid']]));
+}
+$newPerson = new Classes\Medic;
+require_once 'definePerson.php';
+$title = filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS);
+$type = filter_var($_POST['type'], FILTER_SANITIZE_SPECIAL_CHARS);
+$uf = filter_var($_POST['type'], FILTER_SANITIZE_SPECIAL_CHARS);
+$clinic = filter_var($_POST['clinic'], FILTER_SANITIZE_SPECIAL_CHARS);
+$register = filter_var($_POST['register'], FILTER_SANITIZE_SPECIAL_CHARS);
+$cns = filter_var($_POST['cns'], FILTER_SANITIZE_SPECIAL_CHARS);
+
+$newPerson->title = $title;
+$newPerson->type = $type;
+$newPerson->uf = $uf;
+$newPerson->register = $register;
+$newPerson->clinic = $clinic;
+$newPerson->cns = $cns;
+echo Classes\Base\Parse::toJson($newPerson->insert());
 ?>

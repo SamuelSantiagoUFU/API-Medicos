@@ -4,6 +4,8 @@ Arquivo: index.php
 */
 clearstatcache();
 date_default_timezone_set('America/Sao_Paulo');
+// Incluindo variáveis de ambiente do sistema
+include 'environment.php';
 // Incluindo o arquivo com as configurações
 include 'config.php';
 // Dando acesso a api por locais externos

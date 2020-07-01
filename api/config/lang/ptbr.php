@@ -15,6 +15,7 @@ define('MSG', [
   'regs_found' => 'Registros encontrados',
   'reg_insert' => 'Dados salvos com sucesso!',
   'reg_update' => 'Dados atualizados com sucesso!',
-  'reg_delete' => 'Dados removidos com sucesso!'
+  'reg_delete' => 'Dados removidos com sucesso!',
+  'not_valid' => 'Estão faltando dados cruciais'
 ]);
 ?>

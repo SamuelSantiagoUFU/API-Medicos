@@ -1,25 +1,13 @@
 <?php
-/*function distance($lat1, $lon1, $lat2, $lon2, $earthRadius = 6371000) {
-  $latFrom = deg2rad($lat1);
-  $lonFrom = deg2rad($lon1);
-  $latTo = deg2rad($lat2);
-  $lonTo = deg2rad($lon2);
-
-  $lonDelta = $lonTo - $lonFrom;
-  $a = pow(cos($latTo) * sin($lonDelta), 2) +
-    pow(cos($latFrom) * sin($latTo) - sin($latFrom) * cos($latTo) * cos($lonDelta), 2);
-  $b = sin($latFrom) * sin($latTo) + cos($latFrom) * cos($latTo) * cos($lonDelta);
-
-  $angle = atan2(sqrt($a), $b);
-  return round($angle * $earthRadius, 2);
-}*/
-
+if (!Classes\Validate::validatePOST($_POST) || !Classes\Validate::validateGET($_GET)) {
+  die(Classes\Base\Parse::toJson(['code'=>0, 'msg'=>MSG['not_valid']]));
+}
 function distance($origin, $destinations) {
   $origin = implode(',', $origin);
   $destinations = implode('|', array_map(function($el) {
     return implode(',', $el);
   }, $destinations));
-  $url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=$origin&destinations=$destinations&key=AIzaSyCCgJgOP49oSDKdTmfI3s6HXdozi9U_8xE";
+  $url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=$origin&destinations=$destinations&key={$_ENV['GOOGLE_API_KEY']}";
   $ch = curl_init($url);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
   $geoloc = json_decode(curl_exec($ch), true);
@@ -30,10 +18,12 @@ function distance($origin, $destinations) {
   return $distances;
 }
 
-$data = new DateTime("now");
-$uf = 'MG'; // Estado do médico (para não pegar tudo)
+$data = new DateTime(filter_var($_POST['data'], FILTER_SANITIZE_SPECIAL_CHARS));
+$uf = filter_var($_POST['type'], FILTER_SANITIZE_SPECIAL_CHARS); // Estado do médico (para não pegar tudo)
+$pacient = filter_var($_GET['id'], FILTER_VALIDATE_INT);
+$clinic = filter_var($_POST['clinic'], FILTER_SANITIZE_SPECIAL_CHARS);
 
-$pacient = (new Classes\Pacient)->get($_GET['id']);
+$pacient = (new Classes\Pacient)->get($pacient);
 $medicsInWork = (new Classes\Schedule)->listAvailable($data, $uf);
 $consults = (new Classes\Consult)->listDate($data, $uf);
 $medicsAvailable = [];
@@ -61,7 +51,7 @@ if ($consults['total'] == 0) {
   $cache = Classes\Cache::getCache('distances-'.$_GET['id']); // Tenta pegar o cache, com as distâncias, pra ser mais rápido
   if ($cache != null) { // Se existir o cache e for válido
     $dist = $cache; // A distância vai ser pega do arquivo
-  } else { // Senão, pega tudo de novo, com a posição dos médicos (Deveria pelo menos)
+  } else { // Senão, pega tudo de novo, com a posição dos médicos
     $dist = distance([$pacient->lat, $pacient->lng], $medicsPosition);
     Classes\Cache::createCache('distances-'.$_GET['id'], $dist); // Cria o cache e pronto
   }
@@ -76,6 +66,6 @@ if ($consults['total'] == 0) {
     array_push($medicsAvailable, $working->medic);
   }
 }
-$medicsAvailable = Classes\Medic::filter($medicsAvailable, 'clinic', 'Interno'); // Filtra os médicos disponíveis pela clinica, apenas Interno (só o que tem no momento)
+$medicsAvailable = Classes\Medic::filter($medicsAvailable, 'clinic', $clinic); // Filtra os médicos disponíveis pela clinica
 echo Classes\Base\Parse::toJson($medicsAvailable); // Mostra os médicos disponíveis
 ?>
