@@ -25,7 +25,7 @@ Aqui estão as configurações gerais do banco de dados, tais como host, nome, u
 ##### directory.php
 Aqui estão as configurações gerais das pastas da aplicação, tais como o nome da pasta onde está a api, a pasta das classes e do cache utilizado para o carregamento mais rápido da API.
 ##### message.php
-Este arquivo apenas contém a configuração para o idioma das mensagens retornadas pela API.
+Este arquivo apenas contém a configuração para o idioma das mensagens retornadas pela API. O valor deve ser o mesmo nome do arquivo contido em config/lang
 ##### misc.php
 Contém as configurações gerais que não se aplicam a nenhuma outra categoria, como a extensão dos arquivos de classe, o host permitido para o acesso e algumas outras configurações.
 * **host_url:** O host que a API permitirá o acesso. **MUDE PARA O LINK DO SEU SITE, CASO CONTRÁRIO, PERMITIRÁ QUE QUALQUER UM ACESSE**
@@ -38,3 +38,20 @@ Contém as configurações gerais que não se aplicam a nenhuma outra categoria,
   * M => minutos
   * H => horas
 #### Pastas
+##### /database
+Contém todos os arquivos das tabelas necessárias para o banco de dados, assim como suas colunas. Devem ser mudados os nomes, conforme necessidade apenas do lado do `=> 'Valor'`
+##### /lang
+Pasta com os idiomas para as mensagens da API. Podem ser modificadas para apresentar as mensagens escolhidas por você.
+
+As mensagens também podem conter variáveis pré-definidas que serão substituidas pelo valor especificado na documentação
+* **{class_name}** será substituído pelo nome da classe onde está sendo chamado o script.
+
+### Instalação
+Caso não possua alguma tabela necessária para o funcionamento, é fortemente recomendado criá-la, ou simplesmente executar o script chamado `db.php` que serão criadas as tabelas restantes de forma automática.
+```cmd
+$ php db.php [-force | -help | -check]
+```
+O uso dos atributos é opcional
+* **-force:** forçar a criação das tabelas (isso apagará todas e criará tudo do zero). Nunca use em servidores que estejam em produção, apenas para fins de testes.
+* **-help:** exibe esta ajuda.
+* **-check:** verifica se todas as tabelas estão corretas.
