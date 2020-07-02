@@ -270,3 +270,152 @@ A resposta esperada é um JSON similar ao abaixo
   "msg": "Desbloqueio realizado com sucesso!"
 }
 ```
+#### Listar pacientes
+Para listar os pacientes existentes, pode-se fazer a seguinte chamada http.
+O parâmetro {query} é opcional
+```apache
+$ GET /pacient/list/{query}
+```
+ou em JS
+```javascript
+fetch('/pacient/list/{query}')
+.then(data => data.json())
+.then((data) => {
+  // Faça alguma coisa aqui
+}).catch(error => console.error(error));
+```
+A resposta esperada é um JSON similar ao abaixo
+```json
+{
+  "code": 200,
+  "total": 5,
+  "msg": "Registros encontrados",
+  "result": [
+    {
+      "id": 5,
+      "title": "Dr",
+      "name": "Joaquim"
+    },{
+      "id": 6,
+      "title": "Dra",
+      "name": "Manuela"
+    }
+  ]
+}
+```
+#### Resgatar um paciente específico
+Também é possível resgatar um paciente tendo o seu id. É útil para fazer alterações.
+```apache
+$ GET /pacient/get/{ID}
+```
+```javascript
+fetch('/pacient/get/{ID}')
+.then(data => data.json())
+.then((data) => {
+  // Faça alguma coisa aqui
+}).catch(error => console.error(error));
+```
+A resposta esperada é um JSON similar ao abaixo
+```json
+{
+  "id": 5,
+  "title": "Dr",
+  "name": "Joaquim",
+  "consults": [
+    {
+      "id": 1,
+      "pacient": {
+        "id": 653,
+        "name": "Rafael",
+        "sex": "M"
+      },
+      "value": 279.00,
+      "done": true
+    }
+  ]
+}
+```
+#### Inserir um paciente novo
+```apache
+$ POST /pacient/post
+```
+```javascript
+var form = new FormData(document.getElementById('pacient'));
+fetch('/pacient/post', {
+  method: "POST",
+  body: form
+}).then(data => data.json())
+.then((data) => {
+  // Faça alguma coisa aqui
+}).catch(error => console.error(error));
+```
+A resposta esperada é um JSON similar ao abaixo
+```json
+{
+  "code": 678,
+  "msg": "Dados salvos com sucesso!"
+}
+```
+#### Atualizar um paciente existente
+```apache
+$ POST /pacient/put
+```
+```javascript
+var form = new FormData(document.getElementById('pacient'));
+fetch('/pacient/put', {
+  method: "POST",
+  body: form
+}).then(data => data.json())
+.then((data) => {
+  // Faça alguma coisa aqui
+}).catch(error => console.error(error));
+```
+A resposta esperada é um JSON similar ao abaixo
+```json
+{
+  "code": 678,
+  "msg": "Dados salvos com sucesso!"
+}
+```
+#### Bloquear um paciente
+```apache
+$ POST /pacient/block
+```
+```javascript
+var form = new FormData(document.getElementById('pacient'));
+fetch('/pacient/block', {
+  method: "POST",
+  body: form
+}).then(data => data.json())
+.then((data) => {
+  // Faça alguma coisa aqui
+}).catch(error => console.error(error));
+```
+A resposta esperada é um JSON similar ao abaixo
+```json
+{
+  "code": 200,
+  "msg": "Bloqueio realizado com sucesso!"
+}
+```
+#### Desbloquear um paciente
+```apache
+$ POST /pacient/unblock
+```
+```javascript
+var form = new FormData(document.getElementById('pacient'));
+fetch('/pacient/unblock', {
+  method: "POST",
+  body: form
+}).then(data => data.json())
+.then((data) => {
+  // Faça alguma coisa aqui
+}).catch(error => console.error(error));
+```
+A resposta esperada é um JSON similar ao abaixo
+```json
+{
+  "code": 200,
+  "msg": "Desbloqueio realizado com sucesso!"
+}
+```
