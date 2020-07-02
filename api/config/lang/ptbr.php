@@ -16,6 +16,8 @@ define('MSG', [
   'reg_insert' => 'Dados salvos com sucesso!',
   'reg_update' => 'Dados atualizados com sucesso!',
   'reg_delete' => 'Dados removidos com sucesso!',
-  'not_valid' => 'Estão faltando dados cruciais'
+  'not_valid' => 'Estão faltando dados cruciais',
+  'block' => 'Bloqueio realizado',
+  'unblock' => 'Desbloqueio realizado'
 ]);
 ?>

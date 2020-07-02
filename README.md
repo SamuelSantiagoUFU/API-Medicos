@@ -55,3 +55,218 @@ O uso dos atributos é opcional
 * **-force:** forçar a criação das tabelas (isso apagará todas e criará tudo do zero). Nunca use em servidores que estejam em produção, apenas para fins de testes.
 * **-help:** exibe esta ajuda.
 * **-check:** verifica se todas as tabelas estão corretas.
+
+### Uso
+O uso é todo feito por chamadas HTTP/JS. O retorno de todas as chamadas é um objeto JSON que pode ser tratado da melhor maneira pelo cliente. Os exemplos aqui serão dados com base na função fetch, implementada no HTML5, mas podem ser facilmente adaptados para funcionar com AJAX.
+#### Listar médicos
+Para listar os médicos existentes, pode-se fazer a seguinte chamada http
+```apache
+$ GET /medic/list
+```
+ou em JS
+```javascript
+fetch('/medic/list')
+.then(data => data.json())
+.then((data) => {
+  // Faça alguma coisa aqui
+}).catch(error => console.error(error));
+```
+A resposta esperada é um JSON similar ao abaixo
+```json
+{
+  "code": 200,
+  "total": 5,
+  "msg": "Registros encontrados",
+  "result": [
+    {
+      "id": 5,
+      "title": "Dr",
+      "name": "Joaquim"
+    },{
+      "id": 6,
+      "title": "Dra",
+      "name": "Manuela"
+    }
+  ]
+}
+```
+#### Listar médicos por especialidade
+```apache
+$ GET /medic/list/specialist/{SPEC}
+```
+```javascript
+fetch('/medic/list/specialist/{SPEC}')
+.then(data => data.json())
+.then((data) => {
+  // Faça alguma coisa aqui
+}).catch(error => console.error(error));
+```
+A resposta esperada é um JSON similar ao abaixo
+```json
+{
+  "code": 200,
+  "total": 5,
+  "msg": "Registros encontrados",
+  "result": [
+    {
+      "id": 5,
+      "title": "Dr",
+      "name": "Joaquim"
+    },{
+      "id": 6,
+      "title": "Dra",
+      "name": "Manuela"
+    }
+  ]
+}
+```
+#### Listar médicos disponíveis para atendimento
+```apache
+$ POST /medic/list/area/{PACIENT}
+```
+```javascript
+var form = new FormData(document.getElementById('consult'));
+fetch('/medic/list/area/{PACIENT}', {
+  method: "POST",
+  body: form
+})
+.then(data => data.json())
+.then((data) => {
+  // Faça alguma coisa aqui
+}).catch(error => console.error(error));
+```
+A resposta esperada é um JSON similar ao abaixo
+```json
+{
+  "code": 200,
+  "total": 5,
+  "msg": "Registros encontrados",
+  "result": [
+    {
+      "id": 5,
+      "title": "Dr",
+      "name": "Joaquim"
+    },{
+      "id": 6,
+      "title": "Dra",
+      "name": "Manuela"
+    }
+  ]
+}
+```
+#### Resgatar um médico específico
+Também é possível resgatar um médico tendo o seu id. É útil para fazer alterações.
+```apache
+$ GET /medic/get/{ID}
+```
+```javascript
+fetch('/medic/get/{ID}')
+.then(data => data.json())
+.then((data) => {
+  // Faça alguma coisa aqui
+}).catch(error => console.error(error));
+```
+A resposta esperada é um JSON similar ao abaixo
+```json
+{
+  "id": 5,
+  "title": "Dr",
+  "name": "Joaquim",
+  "consults": [
+    {
+      "id": 1,
+      "pacient": {
+        "id": 653,
+        "name": "Rafael",
+        "sex": "M"
+      },
+      "value": 279.00,
+      "done": true
+    }
+  ]
+}
+```
+#### Inserir um médico novo
+```apache
+$ POST /medic/post
+```
+```javascript
+var form = new FormData(document.getElementById('medic'));
+fetch('/medic/post', {
+  method: "POST",
+  body: form
+}).then(data => data.json())
+.then((data) => {
+  // Faça alguma coisa aqui
+}).catch(error => console.error(error));
+```
+A resposta esperada é um JSON similar ao abaixo
+```json
+{
+  "code": 678,
+  "msg": "Dados salvos com sucesso!"
+}
+```
+#### Atualizar um médico existente
+```apache
+$ POST /medic/put
+```
+```javascript
+var form = new FormData(document.getElementById('medic'));
+fetch('/medic/put', {
+  method: "POST",
+  body: form
+}).then(data => data.json())
+.then((data) => {
+  // Faça alguma coisa aqui
+}).catch(error => console.error(error));
+```
+A resposta esperada é um JSON similar ao abaixo
+```json
+{
+  "code": 678,
+  "msg": "Dados salvos com sucesso!"
+}
+```
+#### Bloquear um médico
+```apache
+$ POST /medic/block
+```
+```javascript
+var form = new FormData(document.getElementById('medic'));
+fetch('/medic/block', {
+  method: "POST",
+  body: form
+}).then(data => data.json())
+.then((data) => {
+  // Faça alguma coisa aqui
+}).catch(error => console.error(error));
+```
+A resposta esperada é um JSON similar ao abaixo
+```json
+{
+  "code": 200,
+  "msg": "Bloqueio realizado com sucesso!"
+}
+```
+#### Desbloquear um médico
+```apache
+$ POST /medic/unblock
+```
+```javascript
+var form = new FormData(document.getElementById('medic'));
+fetch('/medic/unblock', {
+  method: "POST",
+  body: form
+}).then(data => data.json())
+.then((data) => {
+  // Faça alguma coisa aqui
+}).catch(error => console.error(error));
+```
+A resposta esperada é um JSON similar ao abaixo
+```json
+{
+  "code": 200,
+  "msg": "Desbloqueio realizado com sucesso!"
+}
+```

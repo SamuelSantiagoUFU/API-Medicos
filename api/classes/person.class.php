@@ -158,7 +158,7 @@ abstract class Person extends Objecto
    * @function block
    * @param int $id
    * @return boolean
-   * Função que realiza o blooqueio de uma pessoa pelo seu ID
+   * Função que realiza o bloqueio de uma pessoa pelo seu ID
    */
   public function block(int $id = 0) {
     if (!$this->id) {
@@ -167,7 +167,7 @@ abstract class Person extends Objecto
     }
     $qb = new QueryBuilder;
     $result = $qb->table(TB_PEOPLE['_name'])->fields(TB_PEOPLE['active'])->where(TB_PEOPLE['id'].' = ?')->update(false, $this->id);
-    return $result;
+    return ['code' => 200 * $result, 'msg' => $this->replaceVars(MSG['block'])];
   }
 
   /**
@@ -183,7 +183,7 @@ abstract class Person extends Objecto
     }
     $qb = new QueryBuilder;
     $result = $qb->table(TB_PEOPLE['_name'])->fields(TB_PEOPLE['active'])->where(TB_PEOPLE['id'].' = ?')->update(true, $this->id);
-    return $result;
+    return ['code' => 200 * $result, 'msg' => $this->replaceVars(MSG['unblock'])];
   }
 
   public function getAddress($lat = null, $lng = null) {
