@@ -4,6 +4,6 @@ if (!Classes\Validate::validateGET($_GET)) {
 }
 $medic = filter_var($_GET['medic'], FILTER_VALIDATE_INT);
 $schedule = new Classes\Schedule;
-$json = $schedule->list($medic);
+$json = $schedule->list($medic, false);
 echo Classes\Base\Parse::toJson($json);
 ?>

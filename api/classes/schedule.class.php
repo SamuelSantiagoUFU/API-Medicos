@@ -9,7 +9,6 @@ use Classes\Base\Objecto as Objecto;
 class Schedule extends Objecto
 {
   public $id;
-  public $medic;
   public $weekday;
   public $hourInit;
   public $duration;
@@ -22,10 +21,10 @@ class Schedule extends Objecto
    * @return Schedule
    * Função que carrega os valores do resultado para as variáveis
    */
-  private function loadAttributes($result) {
+  private function loadAttributes($result, bool $showMedic = true) {
     if (!is_array($result)) $result = (array)$result;
     $this->id = $result[TB_SCHEDULES['id']];
-    $this->medic = (new Medic)->get($result[TB_SCHEDULES['medic']]);
+    if ($showMedic) $this->medic = (new Medic)->get($result[TB_SCHEDULES['medic']]);
     $this->weekday = $result[TB_SCHEDULES['weekday']];
     $this->hourInit = $result[TB_SCHEDULES['hourInit']];
     $this->duration = $result[TB_SCHEDULES['duration']];
@@ -147,7 +146,7 @@ class Schedule extends Objecto
    * Função que realiza a busca na tabela e retorna todos os
    * horários daquele médico
    */
-  public function list(int $medic) {
+  public function list(int $medic, bool $showMedic = true) {
     $result = ['code' => 0, 'msg' => $this->replaceVars(MSG['no_data']), 'result' => []];
     $qb = new QueryBuilder;
     $results = $qb->table(TB_SCHEDULES['_name'])->where([TB_SCHEDULES['medic'].' = ?'])->select([$medic]);
@@ -157,7 +156,7 @@ class Schedule extends Objecto
     }
     foreach ($results as $r) {
       $p = new $this;
-      array_push($result['result'], $p->loadAttributes($r));
+      array_push($result['result'], $p->loadAttributes($r, $showMedic));
     }
     $result['code'] = 200;
     $result['msg'] = $this->replaceVars(MSG['regs_found']);
