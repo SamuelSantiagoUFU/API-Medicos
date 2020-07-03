@@ -204,6 +204,15 @@ abstract class Person extends Objecto
     $geoloc = json_decode(curl_exec($ch), true);
     return $geoloc['results'][0]['geometry']['location'];
   }
+
+  function _login(string $email) {
+    $qb = new QueryBuilder;
+    $result = $qb->table(TB_PEOPLE['_name'])->fields([TB_PEOPLE['id']])->where(TB_PEOPLE['email'].' LIKE ?')->select($email);
+    if (!$result || empty($result)) {
+      return null;
+    }
+    return json_decode(json_encode($result[0]), true)[TB_PEOPLE['id']];
+  }
 }
 
 ?>

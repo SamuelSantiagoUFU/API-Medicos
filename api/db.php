@@ -101,7 +101,7 @@ try {
     `{$people['cpf']}` char(11) DEFAULT NULL,
     `{$people['name']}` varchar(255) NOT NULL,
     `{$people['born']}` date DEFAULT NULL,
-    `{$people['sex']}` char(1) NOT NULL,
+    `{$people['sex']}` char(1) DEFAULT NULL,
     `{$people['phone']}` char(10) DEFAULT NULL,
     `{$people['cell']}` char(11) DEFAULT NULL,
     `{$people['user']}` varchar(255) NOT NULL,

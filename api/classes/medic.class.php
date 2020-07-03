@@ -172,6 +172,13 @@ class Medic extends Person
     $result['msg'] = $this->replaceVars(MSG['regs_found']);
     return $result;
   }
+
+  public function login(string $email) {
+    $result = parent::_login($email);
+    if (!$result)
+      return null;
+    return $this->get($result);
+  }
 }
 
 ?>

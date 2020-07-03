@@ -18,6 +18,11 @@ define('MSG', [
   'reg_delete' => 'Dados removidos com sucesso!',
   'not_valid' => 'Estão faltando dados cruciais',
   'block' => 'Bloqueio realizado',
-  'unblock' => 'Desbloqueio realizado'
+  'unblock' => 'Desbloqueio realizado',
+  'login_success' => 'Logado com sucesso!',
+  'login_fail' => 'Falha ao logar',
+  'user_not_match' => 'Email e/ou senha incorretos',
+  'logout_success' => 'Deslogado com sucesso!',
+  'logout_fail' => 'Falha ao deslogar'
 ]);
 ?>

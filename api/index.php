@@ -46,7 +46,9 @@ $routes = array(
   '/consult/get/{id:int}' => 'getConsult',
   '/consult/post' => 'insertConsult',
   '/consult/put' => 'updateConsult',
-  '/consult/delete' => 'deleteConsult'
+  '/consult/delete' => 'deleteConsult',
+  '/login' => 'login',
+  '/logout' => 'logout'
 );
 url_response($routes);
 ?>
