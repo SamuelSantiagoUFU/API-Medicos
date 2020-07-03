@@ -9,7 +9,7 @@ Esta foi uma API desenvolvida para servir de busca por médicos cadastrados
 previamente, baseados na distância e na disponibilidade de horários.
 
 ## Índice
-(Como usar)[#como-usar]
+[Como usar](#como-usar)
 
 ## Como usar
 Primeiramente, coloque a pasta **api** no diretório raiz do site e siga com as
