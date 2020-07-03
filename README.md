@@ -760,3 +760,113 @@ A resposta esperada é um JSON similar ao abaixo
   "msg": "Dados deletados com sucesso!"
 }
 ```
+#### Resgatar uma consulta específica
+```apache
+$ GET /consult/get/{ID}
+```
+```javascript
+fetch('/consult/get/{ID}')
+.then(data => data.json())
+.then((data) => {
+  // Faça alguma coisa aqui
+}).catch(error => console.error(error));
+```
+##### Dados necessários
+* **ID:** ID da consulta específica
+
+A resposta esperada é um JSON similar ao abaixo
+```json
+{
+  "id":"1",
+  "pacient": {"id":542,"cpf":null,"name":"Rafael"},
+  "value":"15.00",
+  "return": {"code":0,"msg":"Não existem registros"},
+  "done":true,
+  "medic": {"id":215,"cpf":null,"name":"Fernanda","title":"Dra.","type":"CRM","uf":"SP"},
+  "exams":[
+    {"id":"1","description":"Hemograma completo","qtd":"1","type":"Sangue"},
+    {"id":"2","description":"Corpocultura","qtd":"1","type":"Urina"}
+  ]
+}
+```
+#### Inserir uma consulta nova
+```apache
+$ POST /consult/post
+```
+```javascript
+var form = new FormData(document.getElementById('consult'));
+fetch('/consult/post', {
+  method: "POST",
+  body: form
+}).then(data => data.json())
+.then((data) => {
+  // Faça alguma coisa aqui
+}).catch(error => console.error(error));
+```
+##### Dados necessários
+* **medic:** ID do médico
+* **pacient:** ID do paciente
+* **date:** Data e hora que está marcado
+* **value:** Valor da consulta
+* **return:** A consulta principal, se essa for um retorno
+
+A resposta esperada é um JSON similar ao abaixo
+```json
+{
+  "code": 678,
+  "msg": "Dados salvos com sucesso!"
+}
+```
+#### Atualizar uma consulta existente
+```apache
+$ POST /consult/put
+```
+```javascript
+var form = new FormData(document.getElementById('consult'));
+fetch('/consult/put', {
+  method: "POST",
+  body: form
+}).then(data => data.json())
+.then((data) => {
+  // Faça alguma coisa aqui
+}).catch(error => console.error(error));
+```
+##### Dados necessários
+* **id:** ID da consulta em questão que vai sofrer a alteração
+* **medic:** ID do médico
+* **pacient:** ID do paciente
+* **date:** Data e hora que está marcado
+* **value:** Valor da consulta
+* **return:** A consulta principal, se essa for um retorno
+
+A resposta esperada é um JSON similar ao abaixo
+```json
+{
+  "code": 678,
+  "msg": "Dados salvos com sucesso!"
+}
+```
+#### Deletar uma consulta existente
+```apache
+$ POST /consult/delete
+```
+```javascript
+var form = new FormData(document.getElementById('consult'));
+fetch('/consult/delete', {
+  method: "POST",
+  body: form
+}).then(data => data.json())
+.then((data) => {
+  // Faça alguma coisa aqui
+}).catch(error => console.error(error));
+```
+##### Dados necessários
+* **id:** ID da consulta em questão que vai ser apagada
+
+A resposta esperada é um JSON similar ao abaixo
+```json
+{
+  "code": 678,
+  "msg": "Dados deletados com sucesso!"
+}
+```
