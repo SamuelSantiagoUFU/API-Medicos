@@ -12,5 +12,6 @@ if (ini_get("session.use_cookies")) {
     );
 }
 
-session_destroy();
+if (session_destroy())
+  die(Classes\Base\Parse::toJson(['code'=>200, 'logado'=>false, 'msg'=>MSG['logout_success']]));
 ?>
