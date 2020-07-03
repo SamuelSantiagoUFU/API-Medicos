@@ -101,6 +101,9 @@ fetch('/medic/list/specialist/{SPEC}')
   // Faça alguma coisa aqui
 }).catch(error => console.error(error));
 ```
+##### Dados necessários
+* **SPEC:** Todo ou parte do nome da especialidade
+
 A resposta esperada é um JSON similar ao abaixo
 ```json
 {
@@ -135,6 +138,9 @@ fetch('/medic/list/area/{PACIENT}', {
   // Faça alguma coisa aqui
 }).catch(error => console.error(error));
 ```
+##### Dados necessários
+* **PACIENT:** Id do paciente que está procurando por uma consulta
+
 A resposta esperada é um JSON similar ao abaixo
 ```json
 {
@@ -166,6 +172,9 @@ fetch('/medic/get/{ID}')
   // Faça alguma coisa aqui
 }).catch(error => console.error(error));
 ```
+##### Dados necessários
+* **ID:** Id do médico
+
 A resposta esperada é um JSON similar ao abaixo
 ```json
 {
@@ -200,6 +209,22 @@ fetch('/medic/post', {
   // Faça alguma coisa aqui
 }).catch(error => console.error(error));
 ```
+##### Dados necessários
+* **name:** Nome do novo médico
+* **user:** Usuário do novo médico
+* **email:** Email do novo médico
+* **pass:** Senha do novo médico
+* **address:** Endereço do consultório do novo médico
+* **number:** Número do consultório do novo médico
+##### Dados opcionais
+* **cpf:** CPF do novo médico
+* **born:** Data de nascimento do novo médico
+* **sex:** Sexo do novo médico
+* **phone:** Telefone do novo médico
+* **cellphone:** Celular do novo médico
+* **rg:** RG do novo médico
+* **complement:** Complemento do consultório do novo médico (caso tenha)
+
 A resposta esperada é um JSON similar ao abaixo
 ```json
 {
