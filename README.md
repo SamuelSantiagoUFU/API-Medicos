@@ -216,6 +216,12 @@ fetch('/medic/post', {
 * **pass:** Senha do novo médico
 * **address:** Endereço do consultório do novo médico
 * **number:** Número do consultório do novo médico
+* **title:** Título do novo médico (Dr. / Dra. ...)
+* **type:** Tipo de registro (CRM)
+* **uf:** UF do registro
+* **register:** Número do registro
+* **clinic:** Especialização do médico (cardiologista, clínico geral...)
+* **CNS:** Número do cns
 ##### Dados opcionais
 * **cpf:** CPF do novo médico
 * **born:** Data de nascimento do novo médico
@@ -246,6 +252,29 @@ fetch('/medic/put', {
   // Faça alguma coisa aqui
 }).catch(error => console.error(error));
 ```
+##### Dados necessários
+* **id:** ID do médico que vai sofrer a alteração
+* **name:** Nome do médico que vai sofrer a alteração
+* **user:** Usuário do médico que vai sofrer a alteração
+* **email:** Email do médico que vai sofrer a alteração
+* **pass:** Senha do médico que vai sofrer a alteração
+* **address:** Endereço do consultório do médico que vai sofrer a alteração
+* **number:** Número do consultório do médico que vai sofrer a alteração
+* **title:** Título do médico que vai sofrer a alteração (Dr. / Dra. ...)
+* **type:** Tipo de registro (CRM)
+* **uf:** UF do registro
+* **register:** Número do registro
+* **clinic:** Especialização do médico (cardiologista, clínico geral...)
+* **CNS:** Número do cns
+##### Dados opcionais
+* **cpf:** CPF do médico que vai sofrer a alteração
+* **born:** Data de nascimento do médico que vai sofrer a alteração
+* **sex:** Sexo do médico que vai sofrer a alteração
+* **phone:** Telefone do médico que vai sofrer a alteração
+* **cellphone:** Celular do médico que vai sofrer a alteração
+* **rg:** RG do médico que vai sofrer a alteração
+* **complement:** Complemento do consultório do médico que vai sofrer a alteração (caso tenha)
+
 A resposta esperada é um JSON similar ao abaixo
 ```json
 {
@@ -267,6 +296,9 @@ fetch('/medic/block', {
   // Faça alguma coisa aqui
 }).catch(error => console.error(error));
 ```
+##### Dados necessários
+* **id:** ID do médico que será bloqueado
+
 A resposta esperada é um JSON similar ao abaixo
 ```json
 {
@@ -288,6 +320,9 @@ fetch('/medic/unblock', {
   // Faça alguma coisa aqui
 }).catch(error => console.error(error));
 ```
+##### Dados necessários
+* **id:** ID do médico que será desbloqueado
+
 A resposta esperada é um JSON similar ao abaixo
 ```json
 {
