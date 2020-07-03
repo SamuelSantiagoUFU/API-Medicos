@@ -9,7 +9,31 @@ Esta foi uma API desenvolvida para servir de busca por médicos cadastrados
 previamente, baseados na distância e na disponibilidade de horários.
 
 ## Índice
-[Como usar](#como-usar)
+* [Como usar](#como-usar)
+* [Uso](#uso)
+  * [Médicos](#medicos)
+    * [Listar](#listar-médicos)
+    * [Listar por especialidade](#listar-médicos-por-especialidade)
+    * [Listar disponíveis](#listar-médicos-disponíveis-para-atendimento)
+    * [Resgatar específico](#resgatar-um-médico-específico)
+    * [Inserir](#inserir-um-médico-novo)
+    * [Atualizar](#atualizar-um-médico-existente)
+    * [Bloquear](#bloquear-um-médico)
+    * [Desbloquear](#desbloquear-um-médico)
+  * [Pacientes](#pacientes)
+    * [Listar](#listar-pacientes)
+    * [Resgatar específico](#resgatar-um-paciente-específico)
+    * [Inserir](#inserir-um-paciente-novo)
+    * [Atualizar](#atualizar-um-paciente-existente)
+    * [Bloquear](#bloquear-um-paciente)
+    * [Desbloquear](#desbloquear-um-paciente)
+  * [Agendas e Horários](#agendas-e-horários)
+    * [Listar](#listar-pacientes)
+    * [Resgatar específico](#resgatar-um-paciente-específico)
+    * [Inserir](#inserir-um-paciente-novo)
+    * [Atualizar](#atualizar-um-paciente-existente)
+    * [Bloquear](#bloquear-um-paciente)
+    * [Desbloquear](#desbloquear-um-paciente)
 
 ## Como usar
 Primeiramente, coloque a pasta **api** no diretório raiz do site e siga com as
@@ -61,6 +85,7 @@ O uso dos atributos é opcional
 
 ### Uso
 O uso é todo feito por chamadas HTTP/JS. O retorno de todas as chamadas é um objeto JSON que pode ser tratado da melhor maneira pelo cliente. Os exemplos aqui serão dados com base na função fetch, implementada no HTML5, mas podem ser facilmente adaptados para funcionar com AJAX.
+### Médicos
 #### Listar médicos
 Para listar os médicos existentes, pode-se fazer a seguinte chamada http
 ```apache
@@ -333,6 +358,7 @@ A resposta esperada é um JSON similar ao abaixo
   "msg": "Desbloqueio realizado com sucesso!"
 }
 ```
+### Pacientes
 #### Listar pacientes
 Para listar os pacientes existentes, pode-se fazer a seguinte chamada http.
 O parâmetro {query} é opcional
@@ -527,6 +553,7 @@ A resposta esperada é um JSON similar ao abaixo
   "msg": "Desbloqueio realizado com sucesso!"
 }
 ```
+### Agenda e Horários
 #### Listar a agenda de um médico
 ```apache
 $ GET /schedule/list/{MEDIC}
@@ -654,6 +681,7 @@ A resposta esperada é um JSON similar ao abaixo
   "msg": "Dados deletados com sucesso!"
 }
 ```
+### Exames
 #### Resgatar um exame específico
 ```apache
 $ GET /exam/get/{ID}
@@ -763,6 +791,7 @@ A resposta esperada é um JSON similar ao abaixo
   "msg": "Dados deletados com sucesso!"
 }
 ```
+### Consultas
 #### Resgatar uma consulta específica
 ```apache
 $ GET /consult/get/{ID}
