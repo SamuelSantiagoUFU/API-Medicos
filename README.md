@@ -436,6 +436,30 @@ A resposta esperada é um JSON similar ao abaixo
 {
   "code": 200,
   "msg": "Registros encontrados!",
-  "result": [{"id":"1","weekday":"0","hourInit":"06:00:00","duration":"12:00:00","created_at":"2020-06-17 15:19:39","updated_at":"2020-06-17 15:19:39"},{"id":"2","weekday":"1","hourInit":"06:00:00","duration":"08:00:00","created_at":"2020-06-17 20:11:50","updated_at":"2020-06-29 14:05:17"},{"id":"3","weekday":"2","hourInit":"06:00:00","duration":"12:00:00","created_at":"2020-06-17 20:22:18","updated_at":"2020-06-17 20:22:18"}]
+  "result": [
+     {"id":"1","weekday":"0","hourInit":"06:00:00","duration":"12:00:00","created_at":"2020-06-17 15:19:39","updated_at":"2020-06-17 15:19:39"},
+     {"id":"2","weekday":"1","hourInit":"06:00:00","duration":"08:00:00","created_at":"2020-06-17 20:11:50","updated_at":"2020-06-29 14:05:17"},
+     {"id":"3","weekday":"2","hourInit":"06:00:00","duration":"12:00:00","created_at":"2020-06-17 20:22:18","updated_at":"2020-06-17 20:22:18"}
+   ]
+}
+```
+#### Resgatar um horário específico
+```apache
+$ POST /schedule/get/{ID}
+```
+```javascript
+var form = new FormData(document.getElementById('pacient'));
+fetch('/schedule/get/{ID}')
+.then(data => data.json())
+.then((data) => {
+  // Faça alguma coisa aqui
+}).catch(error => console.error(error));
+```
+A resposta esperada é um JSON similar ao abaixo
+```json
+{
+  "code": 200,
+  "msg": "Registros encontrados!",
+  "result": {"id":"1","weekday":"0","hourInit":"06:00:00","duration":"12:00:00","created_at":"2020-06-17 15:19:39","updated_at":"2020-06-17 15:19:39","medic":{...}}
 }
 ```
