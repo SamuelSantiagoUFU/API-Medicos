@@ -1,7 +1,16 @@
 <?php
+session_start();
 if (!Classes\Validate::validatePOST($_POST)) die(Classes\Base\Parse::toJson(['code'=>0, 'msg'=>MSG['not_valid']]));
-$email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
-$pass = password_hash($_POST['pass'], PASSWORD_DEFAULT);
+$session = $_POST['_sessionId'];
 
+$_SESSION = array();
+if (ini_get("session.use_cookies")) {
+    $params = session_get_cookie_params();
+    setcookie(session_name(), '', time() - 42000,
+        $params["path"], $params["domain"],
+        $params["secure"], $params["httponly"]
+    );
+}
 
+session_destroy();
 ?>
