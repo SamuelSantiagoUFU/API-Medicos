@@ -338,12 +338,15 @@ $ GET /pacient/list/{query}
 ```
 ou em JS
 ```javascript
-fetch('/pacient/list/{query}')
+fetch('/pacient/list/{QUERY}')
 .then(data => data.json())
 .then((data) => {
   // Faça alguma coisa aqui
 }).catch(error => console.error(error));
 ```
+##### Dados necessários
+* **QUERY:** Nome ou parte do nome do paciente
+
 A resposta esperada é um JSON similar ao abaixo
 ```json
 {
@@ -375,6 +378,9 @@ fetch('/pacient/get/{ID}')
   // Faça alguma coisa aqui
 }).catch(error => console.error(error));
 ```
+##### Dados necessários
+* **ID:** Id do paciente
+
 A resposta esperada é um JSON similar ao abaixo
 ```json
 {
@@ -409,6 +415,22 @@ fetch('/pacient/post', {
   // Faça alguma coisa aqui
 }).catch(error => console.error(error));
 ```
+##### Dados necessários
+* **name:** Nome do novo paciente
+* **user:** Usuário do novo paciente
+* **email:** Email do novo paciente
+* **pass:** Senha do novo paciente
+* **address:** Endereço do novo paciente
+* **number:** Número do novo paciente
+##### Dados opcionais
+* **cpf:** CPF do novo paciente
+* **born:** Data de nascimento do novo paciente
+* **sex:** Sexo do novo paciente
+* **phone:** Telefone do novo paciente
+* **cellphone:** Celular do novo paciente
+* **rg:** RG do novo paciente
+* **complement:** Complemento do endereço do novo paciente (caso tenha)
+
 A resposta esperada é um JSON similar ao abaixo
 ```json
 {
@@ -430,6 +452,23 @@ fetch('/pacient/put', {
   // Faça alguma coisa aqui
 }).catch(error => console.error(error));
 ```
+##### Dados necessários
+* **id:** ID do paciente que vai sofrer a alteração
+* **name:** Nome do paciente que vai sofrer a alteração
+* **user:** Usuário do paciente que vai sofrer a alteração
+* **email:** Email do paciente que vai sofrer a alteração
+* **pass:** Senha do paciente que vai sofrer a alteração
+* **address:** Endereço do paciente que vai sofrer a alteração
+* **number:** Número do paciente que vai sofrer a alteração
+##### Dados opcionais
+* **cpf:** CPF do paciente que vai sofrer a alteração
+* **born:** Data de nascimento do paciente que vai sofrer a alteração
+* **sex:** Sexo do paciente que vai sofrer a alteração
+* **phone:** Telefone do paciente que vai sofrer a alteração
+* **cellphone:** Celular do paciente que vai sofrer a alteração
+* **rg:** RG do paciente que vai sofrer a alteração
+* **complement:** Complemento do endereço do paciente que vai sofrer a alteração (caso tenha)
+
 A resposta esperada é um JSON similar ao abaixo
 ```json
 {
@@ -451,6 +490,9 @@ fetch('/pacient/block', {
   // Faça alguma coisa aqui
 }).catch(error => console.error(error));
 ```
+##### Dados necessários
+* **id:** ID do paciente que será bloqueado
+
 A resposta esperada é um JSON similar ao abaixo
 ```json
 {
@@ -472,6 +514,9 @@ fetch('/pacient/unblock', {
   // Faça alguma coisa aqui
 }).catch(error => console.error(error));
 ```
+##### Dados necessários
+* **id:** ID do paciente que será desbloqueado
+
 A resposta esperada é um JSON similar ao abaixo
 ```json
 {
@@ -481,15 +526,18 @@ A resposta esperada é um JSON similar ao abaixo
 ```
 #### Listar a agenda de um médico
 ```apache
-$ GET /schedule/list/{ID}
+$ GET /schedule/list/{MEDIC}
 ```
 ```javascript
-fetch('/schedule/list/{ID}')
+fetch('/schedule/list/{MEDIC}')
 .then(data => data.json())
 .then((data) => {
   // Faça alguma coisa aqui
 }).catch(error => console.error(error));
 ```
+##### Dados necessários
+* **MEDIC:** ID do médico que quer ver a agenda
+
 A resposta esperada é um JSON similar ao abaixo
 ```json
 {
@@ -513,6 +561,9 @@ fetch('/schedule/get/{ID}')
   // Faça alguma coisa aqui
 }).catch(error => console.error(error));
 ```
+##### Dados necessários
+* **ID:** ID da agenda específica
+
 A resposta esperada é um JSON similar ao abaixo
 ```json
 {
@@ -535,6 +586,12 @@ fetch('/schedule/post', {
   // Faça alguma coisa aqui
 }).catch(error => console.error(error));
 ```
+##### Dados necessários
+* **medic:** ID do médico que criou a agenda
+* **init:** Horário de início do trabalho
+* **duration:** Duração do trabalho
+* **weekday:** Dia da semana daquele horário (0 = domingo, 1 = segunda, 2 = terça...)
+
 A resposta esperada é um JSON similar ao abaixo
 ```json
 {
@@ -556,10 +613,41 @@ fetch('/schedule/put', {
   // Faça alguma coisa aqui
 }).catch(error => console.error(error));
 ```
+##### Dados necessários
+* **id:** ID do horário em questão que vai sofrer a alteração
+* **medic:** ID do médico que criou a agenda
+* **init:** Horário de início do trabalho
+* **duration:** Duração do trabalho
+* **weekday:** Dia da semana daquele horário (0 = domingo, 1 = segunda, 2 = terça...)
+
 A resposta esperada é um JSON similar ao abaixo
 ```json
 {
   "code": 678,
   "msg": "Dados salvos com sucesso!"
+}
+```
+#### Deletar um horário existente
+```apache
+$ POST /schedule/delete
+```
+```javascript
+var form = new FormData(document.getElementById('schedule'));
+fetch('/schedule/delete', {
+  method: "POST",
+  body: form
+}).then(data => data.json())
+.then((data) => {
+  // Faça alguma coisa aqui
+}).catch(error => console.error(error));
+```
+##### Dados necessários
+* **id:** ID do horário em questão que vai ser apagado
+
+A resposta esperada é um JSON similar ao abaixo
+```json
+{
+  "code": 678,
+  "msg": "Dados deletados com sucesso!"
 }
 ```
