@@ -11,6 +11,8 @@ previamente, baseados na distância e na disponibilidade de horários.
 ## Índice
 * [Como usar](#como-usar)
 * [Uso](#uso)
+  * [Login](#login)
+  * [Logout](#logout)
   * [Médicos](#medicos)
     * [Listar](#listar-médicos)
     * [Listar por especialidade](#listar-médicos-por-especialidade)
@@ -79,7 +81,7 @@ Contém todos os arquivos das tabelas necessárias para o banco de dados, assim 
 ##### /lang
 Pasta com os idiomas para as mensagens da API. Podem ser modificadas para apresentar as mensagens escolhidas por você.
 
-As mensagens também podem conter variáveis pré-definidas que serão substituidas pelo valor especificado na documentação
+As mensagens também podem conter variáveis pré-definidas que serão substituídas pelo valor especificado na documentação
 * **{class_name}** será substituído pelo nome da classe onde está sendo chamado o script.
 
 ### Instalação
@@ -94,6 +96,68 @@ O uso dos atributos é opcional
 
 ### Uso
 O uso é todo feito por chamadas HTTP/JS. O retorno de todas as chamadas é um objeto JSON que pode ser tratado da melhor maneira pelo cliente. Os exemplos aqui serão dados com base na função fetch, implementada no HTML5, mas podem ser facilmente adaptados para funcionar com AJAX.
+### Login
+```apache
+$ POST /login
+```
+```javascript
+var form = new FormData(document.getElementById('login'));
+fetch('/login', {
+  method: "POST",
+  body: form
+})
+.then(data => data.json())
+.then((data) => {
+  if (data.logado) {
+    // Logado
+  } else {
+    // Erro ao logar
+  }
+}).catch(error => console.error(error));
+```
+##### Dados necessários
+* **email:** Campo do email
+* **pass:** Campo da senha
+
+A resposta esperada é um JSON similar ao abaixo
+```json
+{
+  "code": 200,
+  "logado": true,
+  "msg": "Logado com sucesso",
+  "user": {"_sessionId":"abcDAE125v"}
+}
+```
+### Logout
+```apache
+$ POST /logout
+```
+```javascript
+var data = {_sessionId: "abcDAE125v"}
+fetch('/logout', {
+  method: "POST",
+  body: data.serialize()
+})
+.then(data => data.json())
+.then((data) => {
+  if (!data.logado) {
+    // Deslogado
+  } else {
+    // Erro ao deslogar
+  }
+}).catch(error => console.error(error));
+```
+##### Dados necessários
+* **_sessionId:** O ID da sessão do usuário
+
+A resposta esperada é um JSON similar ao abaixo
+```json
+{
+  "code": 200,
+  "logado": false,
+  "msg": "Deslogado com sucesso"
+}
+```
 ### Médicos
 #### Listar médicos
 Para listar os médicos existentes, pode-se fazer a seguinte chamada http
