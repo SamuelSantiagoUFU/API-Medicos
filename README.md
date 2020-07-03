@@ -651,3 +651,112 @@ A resposta esperada é um JSON similar ao abaixo
   "msg": "Dados deletados com sucesso!"
 }
 ```
+#### Resgatar um exame específico
+```apache
+$ GET /exam/get/{ID}
+```
+```javascript
+fetch('/exam/get/{ID}')
+.then(data => data.json())
+.then((data) => {
+  // Faça alguma coisa aqui
+}).catch(error => console.error(error));
+```
+##### Dados necessários
+* **ID:** ID do exame específico
+
+A resposta esperada é um JSON similar ao abaixo
+```json
+{
+  "id":"235",
+  "description":"Hemograma completo",
+  "qtd":"1",
+  "type":"Sangue",
+  "consult": {
+    "id":"1",
+    "pacient": {"id":542,"cpf":null,"name":"Rafael"},
+    "value":"15.00",
+    "return": {"code":0,"msg":"Não existem registros"},
+    "done":true
+  }
+}
+```
+#### Inserir um exame novo
+```apache
+$ POST /exam/post
+```
+```javascript
+var form = new FormData(document.getElementById('exam'));
+fetch('/exam/post', {
+  method: "POST",
+  body: form
+}).then(data => data.json())
+.then((data) => {
+  // Faça alguma coisa aqui
+}).catch(error => console.error(error));
+```
+##### Dados necessários
+* **desc:** Descrição do exame
+* **consult:** ID da consulta
+* **qtd:** Quantidade de amostras
+* **type:** Tipo de exame (S = sangue, F = fezes, U = urina...)
+
+A resposta esperada é um JSON similar ao abaixo
+```json
+{
+  "code": 678,
+  "msg": "Dados salvos com sucesso!"
+}
+```
+#### Atualizar um exame existente
+```apache
+$ POST /exam/put
+```
+```javascript
+var form = new FormData(document.getElementById('exam'));
+fetch('/exam/put', {
+  method: "POST",
+  body: form
+}).then(data => data.json())
+.then((data) => {
+  // Faça alguma coisa aqui
+}).catch(error => console.error(error));
+```
+##### Dados necessários
+* **id:** ID do exame em questão que vai sofrer a alteração
+* **desc:** Descrição do exame
+* **consult:** ID da consulta
+* **qtd:** Quantidade de amostras
+* **type:** Tipo de exame (S = sangue, F = fezes, U = urina...)
+
+A resposta esperada é um JSON similar ao abaixo
+```json
+{
+  "code": 678,
+  "msg": "Dados salvos com sucesso!"
+}
+```
+#### Deletar um exame existente
+```apache
+$ POST /exam/delete
+```
+```javascript
+var form = new FormData(document.getElementById('exam'));
+fetch('/exam/delete', {
+  method: "POST",
+  body: form
+}).then(data => data.json())
+.then((data) => {
+  // Faça alguma coisa aqui
+}).catch(error => console.error(error));
+```
+##### Dados necessários
+* **id:** ID do exame em questão que vai ser apagado
+
+A resposta esperada é um JSON similar ao abaixo
+```json
+{
+  "code": 678,
+  "msg": "Dados deletados com sucesso!"
+}
+```
