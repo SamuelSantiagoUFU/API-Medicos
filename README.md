@@ -446,10 +446,9 @@ A resposta esperada é um JSON similar ao abaixo
 ```
 #### Listar a agenda de um médico
 ```apache
-$ POST /schedule/list/{ID}
+$ GET /schedule/list/{ID}
 ```
 ```javascript
-var form = new FormData(document.getElementById('pacient'));
 fetch('/schedule/list/{ID}')
 .then(data => data.json())
 .then((data) => {
@@ -470,10 +469,9 @@ A resposta esperada é um JSON similar ao abaixo
 ```
 #### Resgatar um horário específico
 ```apache
-$ POST /schedule/get/{ID}
+$ GET /schedule/get/{ID}
 ```
 ```javascript
-var form = new FormData(document.getElementById('pacient'));
 fetch('/schedule/get/{ID}')
 .then(data => data.json())
 .then((data) => {
@@ -485,6 +483,48 @@ A resposta esperada é um JSON similar ao abaixo
 {
   "code": 200,
   "msg": "Registros encontrados!",
-  "result": {"id":"1","weekday":"0","hourInit":"06:00:00","duration":"12:00:00","created_at":"2020-06-17 15:19:39","updated_at":"2020-06-17 15:19:39","medic":{...}}
+  "result": {"id":"1","weekday":"0","hourInit":"06:00:00","duration":"12:00:00","created_at":"2020-06-17 15:19:39","updated_at":"2020-06-17 15:19:39","medic":{"..."}}
+}
+```
+#### Inserir um horário novo
+```apache
+$ POST /schedule/post
+```
+```javascript
+var form = new FormData(document.getElementById('schedule'));
+fetch('/schedule/post', {
+  method: "POST",
+  body: form
+}).then(data => data.json())
+.then((data) => {
+  // Faça alguma coisa aqui
+}).catch(error => console.error(error));
+```
+A resposta esperada é um JSON similar ao abaixo
+```json
+{
+  "code": 678,
+  "msg": "Dados salvos com sucesso!"
+}
+```
+#### Atualizar um horário existente
+```apache
+$ POST /schedule/put
+```
+```javascript
+var form = new FormData(document.getElementById('schedule'));
+fetch('/schedule/put', {
+  method: "POST",
+  body: form
+}).then(data => data.json())
+.then((data) => {
+  // Faça alguma coisa aqui
+}).catch(error => console.error(error));
+```
+A resposta esperada é um JSON similar ao abaixo
+```json
+{
+  "code": 678,
+  "msg": "Dados salvos com sucesso!"
 }
 ```
