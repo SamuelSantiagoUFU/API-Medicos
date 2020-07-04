@@ -104,7 +104,8 @@ $ POST /login
 var form = new FormData(document.getElementById('login'));
 fetch('/login', {
   method: "POST",
-  body: form
+  body: form,
+  credentials: 'include'
 })
 .then(data => data.json())
 .then((data) => {
@@ -132,7 +133,7 @@ A resposta esperada é um JSON similar ao abaixo
 $ GET /logout
 ```
 ```javascript
-fetch('/logout')
+fetch('/logout', {credentials: 'include'})
 .then(data => data.json())
 .then((data) => {
   if (!data.logado) {
@@ -158,7 +159,7 @@ $ GET /medic/list
 ```
 ou em JS
 ```javascript
-fetch('/medic/list')
+fetch('/medic/list', {credentials: 'include'})
 .then(data => data.json())
 .then((data) => {
   // Faça alguma coisa aqui
@@ -188,7 +189,7 @@ A resposta esperada é um JSON similar ao abaixo
 $ GET /medic/list/specialist/{SPEC}
 ```
 ```javascript
-fetch('/medic/list/specialist/{SPEC}')
+fetch('/medic/list/specialist/{SPEC}', {credentials: 'include'})
 .then(data => data.json())
 .then((data) => {
   // Faça alguma coisa aqui
@@ -224,7 +225,8 @@ $ POST /medic/list/area/{PACIENT}
 var form = new FormData(document.getElementById('consult'));
 fetch('/medic/list/area/{PACIENT}', {
   method: "POST",
-  body: form
+  body: form,
+  credentials: 'include'
 })
 .then(data => data.json())
 .then((data) => {
@@ -259,7 +261,7 @@ Também é possível resgatar um médico tendo o seu id. É útil para fazer alt
 $ GET /medic/get/{ID}
 ```
 ```javascript
-fetch('/medic/get/{ID}')
+fetch('/medic/get/{ID}', {credentials: 'include'})
 .then(data => data.json())
 .then((data) => {
   // Faça alguma coisa aqui
@@ -296,7 +298,8 @@ $ POST /medic/post
 var form = new FormData(document.getElementById('medic'));
 fetch('/medic/post', {
   method: "POST",
-  body: form
+  body: form,
+  credentials: 'include'
 }).then(data => data.json())
 .then((data) => {
   // Faça alguma coisa aqui
@@ -339,7 +342,8 @@ $ POST /medic/put
 var form = new FormData(document.getElementById('medic'));
 fetch('/medic/put', {
   method: "POST",
-  body: form
+  body: form,
+  credentials: 'include'
 }).then(data => data.json())
 .then((data) => {
   // Faça alguma coisa aqui
@@ -383,7 +387,8 @@ $ POST /medic/block
 var form = new FormData(document.getElementById('medic'));
 fetch('/medic/block', {
   method: "POST",
-  body: form
+  body: form,
+  credentials: 'include'
 }).then(data => data.json())
 .then((data) => {
   // Faça alguma coisa aqui
@@ -407,7 +412,8 @@ $ POST /medic/unblock
 var form = new FormData(document.getElementById('medic'));
 fetch('/medic/unblock', {
   method: "POST",
-  body: form
+  body: form,
+  credentials: 'include'
 }).then(data => data.json())
 .then((data) => {
   // Faça alguma coisa aqui
@@ -432,7 +438,7 @@ $ GET /pacient/list/{query}
 ```
 ou em JS
 ```javascript
-fetch('/pacient/list/{QUERY}')
+fetch('/pacient/list/{QUERY}', {credentials: 'include'})
 .then(data => data.json())
 .then((data) => {
   // Faça alguma coisa aqui
@@ -466,7 +472,7 @@ Também é possível resgatar um paciente tendo o seu id. É útil para fazer al
 $ GET /pacient/get/{ID}
 ```
 ```javascript
-fetch('/pacient/get/{ID}')
+fetch('/pacient/get/{ID}', {credentials:'include'})
 .then(data => data.json())
 .then((data) => {
   // Faça alguma coisa aqui
@@ -503,7 +509,8 @@ $ POST /pacient/post
 var form = new FormData(document.getElementById('pacient'));
 fetch('/pacient/post', {
   method: "POST",
-  body: form
+  body: form,
+  credentials: 'include'
 }).then(data => data.json())
 .then((data) => {
   // Faça alguma coisa aqui
@@ -540,7 +547,8 @@ $ POST /pacient/put
 var form = new FormData(document.getElementById('pacient'));
 fetch('/pacient/put', {
   method: "POST",
-  body: form
+  body: form,
+  credentials: 'include'
 }).then(data => data.json())
 .then((data) => {
   // Faça alguma coisa aqui
@@ -578,7 +586,8 @@ $ POST /pacient/block
 var form = new FormData(document.getElementById('pacient'));
 fetch('/pacient/block', {
   method: "POST",
-  body: form
+  body: form,
+  credentials: 'include'
 }).then(data => data.json())
 .then((data) => {
   // Faça alguma coisa aqui
@@ -602,7 +611,8 @@ $ POST /pacient/unblock
 var form = new FormData(document.getElementById('pacient'));
 fetch('/pacient/unblock', {
   method: "POST",
-  body: form
+  body: form,
+  credentials: 'include'
 }).then(data => data.json())
 .then((data) => {
   // Faça alguma coisa aqui
@@ -624,7 +634,7 @@ A resposta esperada é um JSON similar ao abaixo
 $ GET /schedule/list/{MEDIC}
 ```
 ```javascript
-fetch('/schedule/list/{MEDIC}')
+fetch('/schedule/list/{MEDIC}', {credentials: 'include'})
 .then(data => data.json())
 .then((data) => {
   // Faça alguma coisa aqui
@@ -650,7 +660,7 @@ A resposta esperada é um JSON similar ao abaixo
 $ GET /schedule/get/{ID}
 ```
 ```javascript
-fetch('/schedule/get/{ID}')
+fetch('/schedule/get/{ID}', {credentials: 'include'})
 .then(data => data.json())
 .then((data) => {
   // Faça alguma coisa aqui
@@ -675,7 +685,8 @@ $ POST /schedule/post
 var form = new FormData(document.getElementById('schedule'));
 fetch('/schedule/post', {
   method: "POST",
-  body: form
+  body: form,
+  credentials: 'include'
 }).then(data => data.json())
 .then((data) => {
   // Faça alguma coisa aqui
@@ -702,7 +713,8 @@ $ POST /schedule/put
 var form = new FormData(document.getElementById('schedule'));
 fetch('/schedule/put', {
   method: "POST",
-  body: form
+  body: form,
+  credentials: 'include'
 }).then(data => data.json())
 .then((data) => {
   // Faça alguma coisa aqui
@@ -730,7 +742,8 @@ $ POST /schedule/delete
 var form = new FormData(document.getElementById('schedule'));
 fetch('/schedule/delete', {
   method: "POST",
-  body: form
+  body: form,
+  credentials: 'include'
 }).then(data => data.json())
 .then((data) => {
   // Faça alguma coisa aqui
@@ -752,7 +765,7 @@ A resposta esperada é um JSON similar ao abaixo
 $ GET /exam/get/{ID}
 ```
 ```javascript
-fetch('/exam/get/{ID}')
+fetch('/exam/get/{ID}', {credentials: 'include'})
 .then(data => data.json())
 .then((data) => {
   // Faça alguma coisa aqui
@@ -785,7 +798,8 @@ $ POST /exam/post
 var form = new FormData(document.getElementById('exam'));
 fetch('/exam/post', {
   method: "POST",
-  body: form
+  body: form,
+  credentials: 'include'
 }).then(data => data.json())
 .then((data) => {
   // Faça alguma coisa aqui
@@ -812,7 +826,8 @@ $ POST /exam/put
 var form = new FormData(document.getElementById('exam'));
 fetch('/exam/put', {
   method: "POST",
-  body: form
+  body: form,
+  credentials: 'include'
 }).then(data => data.json())
 .then((data) => {
   // Faça alguma coisa aqui
@@ -840,7 +855,8 @@ $ POST /exam/delete
 var form = new FormData(document.getElementById('exam'));
 fetch('/exam/delete', {
   method: "POST",
-  body: form
+  body: form,
+  credentials: 'include'
 }).then(data => data.json())
 .then((data) => {
   // Faça alguma coisa aqui
@@ -862,7 +878,7 @@ A resposta esperada é um JSON similar ao abaixo
 $ GET /consult/get/{ID}
 ```
 ```javascript
-fetch('/consult/get/{ID}')
+fetch('/consult/get/{ID}', {credentials: 'include'})
 .then(data => data.json())
 .then((data) => {
   // Faça alguma coisa aqui
@@ -894,7 +910,8 @@ $ POST /consult/post
 var form = new FormData(document.getElementById('consult'));
 fetch('/consult/post', {
   method: "POST",
-  body: form
+  body: form,
+  credentials: 'include'
 }).then(data => data.json())
 .then((data) => {
   // Faça alguma coisa aqui
@@ -922,7 +939,8 @@ $ POST /consult/put
 var form = new FormData(document.getElementById('consult'));
 fetch('/consult/put', {
   method: "POST",
-  body: form
+  body: form,
+  credentials: 'include'
 }).then(data => data.json())
 .then((data) => {
   // Faça alguma coisa aqui
@@ -951,7 +969,8 @@ $ POST /consult/delete
 var form = new FormData(document.getElementById('consult'));
 fetch('/consult/delete', {
   method: "POST",
-  body: form
+  body: form,
+  credentials: 'include'
 }).then(data => data.json())
 .then((data) => {
   // Faça alguma coisa aqui

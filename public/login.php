@@ -35,12 +35,13 @@
       var data = new FormData(login);
       fetch(apiLink+'/login', {
         method: "POST",
-        body: data
+        body: data,
+        credentials: 'include'
       }).then(data => data.json())
       .then(data => {
         console.log(data.user);
         if (data.logado) {
-          //window.location.href = '/';
+          window.location.href = '/';
         }
         M.toast({html: data.msg})
       }).catch(error => console.error(error));
