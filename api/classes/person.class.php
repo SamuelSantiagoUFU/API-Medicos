@@ -9,6 +9,7 @@ use Classes\Base\Objecto as Objecto;
 abstract class Person extends Objecto
 {
   public $id;
+  public $admin;
   public $cpf;
   public $name;
   public $born;
@@ -37,6 +38,7 @@ abstract class Person extends Objecto
   private function loadAttributes($result) {
     if (!is_array($result)) $result = (array)$result;
     $this->id = (int)$result[TB_PEOPLE['id']];
+    $this->admin = (bool)$result[TB_PEOPLE['admin']];
     $this->cpf = $result[TB_PEOPLE['cpf']];
     $this->name = $result[TB_PEOPLE['name']];
     $this->born = $result[TB_PEOPLE['born']];

@@ -1,3 +1,4 @@
+<?session_start();?>
 <!DOCTYPE html>
 <html lang="pt-br" dir="ltr">
   <head>

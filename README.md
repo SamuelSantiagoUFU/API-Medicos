@@ -125,20 +125,15 @@ A resposta esperada é um JSON similar ao abaixo
 {
   "code": 200,
   "logado": true,
-  "msg": "Logado com sucesso",
-  "user": {"_sessionId":"abcDAE125v"}
+  "msg": "Logado com sucesso"
 }
 ```
 ### Logout
 ```apache
-$ POST /logout
+$ GET /logout
 ```
 ```javascript
-var data = {_sessionId: "abcDAE125v"}
-fetch('/logout', {
-  method: "POST",
-  body: data.serialize()
-})
+fetch('/logout')
 .then(data => data.json())
 .then((data) => {
   if (!data.logado) {
@@ -148,9 +143,6 @@ fetch('/logout', {
   }
 }).catch(error => console.error(error));
 ```
-##### Dados necessários
-* **_sessionId:** O ID da sessão do usuário
-
 A resposta esperada é um JSON similar ao abaixo
 ```json
 {

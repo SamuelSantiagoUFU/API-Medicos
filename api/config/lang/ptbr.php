@@ -23,6 +23,7 @@ define('MSG', [
   'login_fail' => 'Falha ao logar',
   'user_not_match' => 'Email e/ou senha incorretos',
   'logout_success' => 'Deslogado com sucesso!',
-  'logout_fail' => 'Falha ao deslogar'
+  'logout_fail' => 'Falha ao deslogar',
+  'user_block' => 'Este usuário se encontra bloqueado.'
 ]);
 ?>

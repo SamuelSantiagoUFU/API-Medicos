@@ -98,6 +98,7 @@ try {
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
   $sqlPeople = "CREATE TABLE IF NOT EXISTS `{$people['_name']}` (
     `{$people['id']}` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `{$people['admin']}` tinyint(1) DEFAULT '0',
     `{$people['cpf']}` char(11) DEFAULT NULL,
     `{$people['name']}` varchar(255) NOT NULL,
     `{$people['born']}` date DEFAULT NULL,

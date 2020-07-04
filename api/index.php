@@ -9,7 +9,7 @@ include 'environment.php';
 // Incluindo o arquivo com as configurações
 include 'config.php';
 // Dando acesso a api por locais externos
-header("Access-Control-Allow-Origin: ".MISC['host_url']);
+header("Access-Control-Allow-Origin: http://".MISC['host_url']);
 header("Access-Control-Allow-Credentials: true");
 // Incluindo arquivo para tratar a url na parte da api
 include_once 'url_response.php';

@@ -1,5 +1,4 @@
-<?session_start();
-require 'includes/header.php'; require 'includes/navbar.php'?>
+<?require 'includes/header.php'; require 'includes/navbar.php'?>
 <div class="container">
 
 </div>

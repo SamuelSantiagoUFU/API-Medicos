@@ -1,5 +1,4 @@
-<?session_start();
-require 'includes/header.php'; require 'includes/navbar.php'?>
+<?require 'includes/header.php'; require 'includes/navbar.php'?>
 <div class="container">
   <main>
     <div class="row">
@@ -39,6 +38,10 @@ require 'includes/header.php'; require 'includes/navbar.php'?>
         body: data
       }).then(data => data.json())
       .then(data => {
+        console.log(data.user);
+        if (data.logado) {
+          //window.location.href = '/';
+        }
         M.toast({html: data.msg})
       }).catch(error => console.error(error));
     });

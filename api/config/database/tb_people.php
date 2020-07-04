@@ -10,6 +10,7 @@
 define('TB_PEOPLE', [
   '_name' => 'people',
   'id' => 'id',
+  'admin' => 'admin',
   'cpf' => 'cpf',
   'name' => 'name',
   'born' => 'born',
