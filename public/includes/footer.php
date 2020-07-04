@@ -10,11 +10,12 @@ if (is_array($js)) {
   foreach ($js as $script) {
     echo "<script src='/js/$script'></script>";
   }
-} else {
+} else if ($js) {
   echo "<script src='/js/$js'></script>";
 }
 ?>
 <script>
+  const apiLink = "http://api.jefersson.net.br";
   document.addEventListener('DOMContentLoaded', function() {
     M.AutoInit();
     var sidenav = document.querySelectorAll('.sidenav');

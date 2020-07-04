@@ -48,7 +48,8 @@ $routes = array(
   '/consult/put' => 'updateConsult',
   '/consult/delete' => 'deleteConsult',
   '/login' => 'login',
-  '/logout' => 'logout'
+  '/logout' => 'logout',
+  '/getInfo/{key:string}' => 'getSessionVal'
 );
 url_response($routes);
 ?>
