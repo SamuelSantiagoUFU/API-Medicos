@@ -13,6 +13,7 @@ previamente, baseados na distância e na disponibilidade de horários.
 * [Uso](#uso)
   * [Login](#login)
   * [Logout](#logout)
+  * [Recuperar sessão](#recuperar-sessão)
   * [Médicos](#medicos)
     * [Listar](#listar-médicos)
     * [Listar por especialidade](#listar-médicos-por-especialidade)
@@ -156,6 +157,28 @@ A resposta esperada é um JSON similar ao abaixo
   "code": 200,
   "logado": false,
   "msg": "Deslogado com sucesso"
+}
+```
+### Recuperar sessão
+As informações dos usuários ficam salvas em uma sessão. É possível recuperá-las fazendo a seguinte chamada
+```apache
+$ GET /getInfo/{INFO}
+```
+```javascript
+fetch('/getInfo/{INFO}')
+.then(data => data.json())
+.then((data) => {
+  // Faça alguma coisa aqui
+}).catch(error => console.error(error));
+```
+##### Dados necessários
+* **INFO:** O nome da informação desejada, listadas em anexo [aqui](#informações-dos-usuários)
+
+A resposta esperada é um JSON similar ao abaixo
+```json
+{
+  "code": 200,
+  "result": "Joaquim"
 }
 ```
 ### Médicos
@@ -975,3 +998,27 @@ A resposta esperada é um JSON similar ao abaixo
   "msg": "Dados deletados com sucesso!"
 }
 ```
+
+# Informações dos usuários
+Essas informações estão disponíveis para serem retornadas pela chamada em [/getInfo](#recuperar-sessão)
+| Informação         | Chave      | Disponível em  |
+|--------------------|------------|----------------|
+| CPF                | cpf        | Todos          |
+| Nome               | name       | Todos          |
+| Data de nascimento | born       | Todos          |
+| Sexo               | sex        | Todos          |
+| Telefone           | phone      | Todos          |
+| Celular            | cellphone  | Todos          |
+| Usuário            | user       | Todos          |
+| RG                 | rg         | Todos          |
+| Latitude           | lat        | Todos          |
+| Longitude          | lng        | Todos          |
+| Número             | number     | Todos          |
+| Complemento        | complement | Todos          |
+| Ativo              | active     | Todos          |
+| Título             | title      | Apenas médicos |
+| Tipo               | type       | Apenas médicos |
+| UF                 | uf         | Apenas médicos |
+| Registro           | register   | Apenas médicos |
+| Especialidade      | clinic     | Apenas médicos |
+| CNS                | cns        | Apenas médicos |
