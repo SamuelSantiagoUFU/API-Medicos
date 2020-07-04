@@ -1,20 +1,19 @@
 <?php
-$cpf = filter_var($_POST['cpf'], FILTER_SANITIZE_NUMBER_INT);
+$cpf = filter_var($_POST['cpf'], FILTER_SANITIZE_NUMBER_INT) ?: null;
 $name = filter_var($_POST['name'], FILTER_SANITIZE_SPECIAL_CHARS);
-$born = filter_var($_POST['born'], FILTER_SANITIZE_SPECIAL_CHARS);
+$born = filter_var($_POST['born'], FILTER_SANITIZE_SPECIAL_CHARS) ?: null;
 $sex = filter_var($_POST['sex'], FILTER_SANITIZE_SPECIAL_CHARS);
-$phone = filter_var($_POST['phone'], FILTER_SANITIZE_SPECIAL_CHARS);
-$cell = filter_var($_POST['cellphone'], FILTER_SANITIZE_SPECIAL_CHARS);
+$phone = filter_var($_POST['phone'], FILTER_SANITIZE_SPECIAL_CHARS) ?: null;
+$cell = filter_var($_POST['cellphone'], FILTER_SANITIZE_SPECIAL_CHARS) ?: null;
 $user = filter_var($_POST['user'], FILTER_SANITIZE_SPECIAL_CHARS);
 $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 $pass = password_hash($_POST['pass'], PASSWORD_DEFAULT);
-$rg = filter_var($_POST['rg'], FILTER_SANITIZE_SPECIAL_CHARS);
+$rg = filter_var($_POST['rg'], FILTER_SANITIZE_SPECIAL_CHARS) ?: null;
 $address = filter_var($_POST['address'], FILTER_SANITIZE_SPECIAL_CHARS);
 $lat = $newPerson->getLatLng($address)['lat'];
 $lng = $newPerson->getLatLng($address)['lng'];
 $number = filter_var($_POST['number'], FILTER_SANITIZE_SPECIAL_CHARS);
-$complement = filter_var($_POST['complement'], FILTER_SANITIZE_SPECIAL_CHARS);
-
+$complement = filter_var($_POST['complement'], FILTER_SANITIZE_SPECIAL_CHARS) ?: null;
 $newPerson->cpf = $cpf;
 $newPerson->name = $name;
 $newPerson->born = $born;

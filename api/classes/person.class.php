@@ -71,21 +71,22 @@ abstract class Person extends Objecto
     $qb = new QueryBuilder;
     $result = $qb->table(TB_PEOPLE['_name'])->fields($fields)->insert([
       $this->id,
-      $this->cpf,
+      $this->admin ?: false,
+      $this->cpf ?: null,
       $this->name,
-      $this->born,
+      $this->born ?: null,
       $this->sex,
-      $this->phone,
-      $this->cellphone,
+      $this->phone ?: null,
+      $this->cellphone ?: null,
       $this->user,
       $this->email,
       $this->pass,
-      $this->rg,
+      $this->rg ?: null,
       $this->lat,
       $this->lng,
       $this->number,
-      $this->complement,
-      $this->isActive,
+      $this->complement ?: null,
+      $this->isActive ?: true,
       $date, $date
     ]);
     if ($result === false) {
@@ -110,6 +111,7 @@ abstract class Person extends Objecto
         return $el.' = ?';
       }, $whereField))->update([
         $this->id,
+        $this->admin,
         $this->cpf,
         $this->name,
         $this->born,
@@ -199,7 +201,7 @@ abstract class Person extends Objecto
   }
 
   public function getLatLng(string $address) {
-    $address = str_replace(MISC['convert_space'], '+', $address);
+    $address = str_replace(' ', MISC['convert_space'], $address);
     $url = "https://maps.googleapis.com/maps/api/geocode/json?address=$address&key={$_ENV['GOOGLE_API_KEY']}";
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);

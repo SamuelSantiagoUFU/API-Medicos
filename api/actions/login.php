@@ -1,7 +1,7 @@
 <?php
-//if (!Classes\Validate::validatePOST($_POST)) die(Classes\Base\Parse::toJson(['code'=>0,'logado'=>false, 'msg'=>MSG['not_valid']]));
-$email = filter_var('samuel@email.com', FILTER_VALIDATE_EMAIL);
-$pass = '123456789';
+if (!Classes\Validate::validatePOST($_POST)) die(Classes\Base\Parse::toJson(['code'=>0,'logado'=>false, 'msg'=>MSG['not_valid']]));
+$email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
+$pass = $_POST['pass'];
 
 // Verifica se é paciente
 $person = new Classes\Pacient();
@@ -25,5 +25,5 @@ foreach ($person as $key => $value) {
   setcookie($key, $value, $valid, '/', MISC['host_url'], false, true);
 }
 setcookie("login", true, $valid, '/', MISC['host_url'], false, true);
-die(Classes\Base\Parse::toJson(['code'=>200, 'logado'=>true, 'msg'=>MSG['login_success'], 'user'=>$valid]));
+die(Classes\Base\Parse::toJson(['code'=>200, 'logado'=>true, 'msg'=>MSG['login_success']]));
 ?>

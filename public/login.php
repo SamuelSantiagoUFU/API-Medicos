@@ -33,13 +33,13 @@
     login.addEventListener('submit', (e) => {
       e.preventDefault();
       var data = new FormData(login);
+      console.log(data);
       fetch(apiLink+'/login', {
         method: "POST",
         body: data,
         credentials: 'include'
-      }).then(data => data.json())
+      }).then(data => console.log(data.json()))
       .then(data => {
-        console.log(data.user);
         if (data.logado) {
           window.location.href = '/';
         }
