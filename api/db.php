@@ -24,6 +24,7 @@ try {
   $people = TB_PEOPLE;
   $schedules = TB_SCHEDULES;
   // Verificando as tabelas que existem
+  $tablesToCheck = [];
   if ($check) {
     $tables = [$consults, $exams, $medics, $pacients, $people, $schedules];
     $tablesNOTExists = [];
@@ -37,6 +38,7 @@ try {
         foreach ($tb as $key => $value) {
           if ($db->query("SHOW COLUMNS FROM `$name` WHERE FIELD LIKE '$value'")->rowCount() == 0) {
             array_push($tablesWrong, $name.'.'.$value);
+            array_push($tablesToCheck, $name);
           }
         }
       }
@@ -46,13 +48,22 @@ try {
       echo '  '.implode(','.PHP_EOL.'  ', $tablesNOTExists).PHP_EOL."]";
     } else if (count($tablesWrong) > 0) {
       echo "Existem tabelas necessárias que não condizem com o esquema:".PHP_EOL."[".PHP_EOL;
-      echo '  '.implode(','.PHP_EOL.'  ', $tablesWrong).PHP_EOL."]";
+      echo '  '.implode(','.PHP_EOL.'  ', $tablesWrong).PHP_EOL."]".PHP_EOL;
     } else {
       echo "Tabelas corretas";
       die();
     }
-
-    die();
+    do {
+      if (PHP_OS == 'WINNT') {
+        echo 'Deseja resolver essa situação? (S/N): ';
+        $choice = stream_get_line(STDIN, 1024, PHP_EOL);
+      } else {
+        $choice = readline('Deseja resolver essa situação? (S/N): ');
+      }
+      $choice = strtoupper($choice);
+    } while($choice != 'S' && $choice != 'N');
+    $install = $choice == 'S';
+    if (!$install) die();
   }
 
   // Criando sqls
@@ -142,20 +153,32 @@ try {
     foreach ($sqlArrays as $create => $name) {
       $sql .= "DROP TABLE IF EXISTS `$name`; " . $create;
     }
-  else $sql = implode(' ', array_keys($sqlArrays));
+  elseif ($check) {
+    $sql = 'SET FOREIGN_KEY_CHECKS=0;';
+    foreach ($sqlArrays as $create => $name) {
+      if (in_array($name, $tablesToCheck))
+        $sql .= "DROP TABLE IF EXISTS `$name`; " . $create;
+    }
+    $sql .= 'SET FOREIGN_KEY_CHECKS=1;';
+  } else $sql = implode(' ', array_keys($sqlArrays));
   // Alterando os sqls
-  $sql .= " ALTER TABLE `{$consults['_name']}`
-    ADD CONSTRAINT `consults_ibfk_1` FOREIGN KEY (`{$consults['medic']}`) REFERENCES `{$medics['_name']}` (`{$medics['id']}`),
-    ADD CONSTRAINT `consults_ibfk_2` FOREIGN KEY (`{$consults['pacient']}`) REFERENCES `{$pacients['_name']}` (`{$pacients['id']}`),
-    ADD CONSTRAINT `consults_ibfk_3` FOREIGN KEY (`{$consults['return_from']}`) REFERENCES `{$consults['_name']}` (`{$consults['id']}`);";
-  $sql .= " ALTER TABLE `{$exams['_name']}`
-    ADD CONSTRAINT `exams_ibfk_2` FOREIGN KEY (`{$exams['consult']}`) REFERENCES `{$consults['_name']}` (`{$consults['id']}`) ON DELETE CASCADE ON UPDATE CASCADE;";
-  $sql .= " ALTER TABLE `{$medics['_name']}`
-    ADD CONSTRAINT `medics_id_foreign` FOREIGN KEY (`{$medics['id']}`) REFERENCES `{$people['_name']}` (`{$people['id']}`) ON DELETE CASCADE;";
-  $sql .= " ALTER TABLE `{$pacients['_name']}`
-    ADD CONSTRAINT `pacients_ibfk_1` FOREIGN KEY (`{$pacients['id']}`) REFERENCES `{$people['_name']}` (`{$people['id']}`) ON DELETE CASCADE;";
-  $sql .= " ALTER TABLE `{$schedules['_name']}`
-    ADD CONSTRAINT `schedules_ibfk_1` FOREIGN KEY (`{$schedules['medic']}`) REFERENCES `{$medics['_name']}` (`{$medics['id']}`);";
+  if (!$check || ($check && in_array($consults['_name'], $tablesToCheck)))
+    $sql .= " ALTER TABLE `{$consults['_name']}`
+      ADD CONSTRAINT `consults_ibfk_1` FOREIGN KEY (`{$consults['medic']}`) REFERENCES `{$medics['_name']}` (`{$medics['id']}`),
+      ADD CONSTRAINT `consults_ibfk_2` FOREIGN KEY (`{$consults['pacient']}`) REFERENCES `{$pacients['_name']}` (`{$pacients['id']}`),
+      ADD CONSTRAINT `consults_ibfk_3` FOREIGN KEY (`{$consults['return_from']}`) REFERENCES `{$consults['_name']}` (`{$consults['id']}`);";
+      if (!$check || ($check && in_array($exams['_name'], $tablesToCheck)))
+    $sql .= " ALTER TABLE `{$exams['_name']}`
+      ADD CONSTRAINT `exams_ibfk_2` FOREIGN KEY (`{$exams['consult']}`) REFERENCES `{$consults['_name']}` (`{$consults['id']}`) ON DELETE CASCADE ON UPDATE CASCADE;";
+  if (!$check || ($check && in_array($medics['_name'], $tablesToCheck)))
+    $sql .= " ALTER TABLE `{$medics['_name']}`
+      ADD CONSTRAINT `medics_id_foreign` FOREIGN KEY (`{$medics['id']}`) REFERENCES `{$people['_name']}` (`{$people['id']}`) ON DELETE CASCADE;";
+  if (!$check || ($check && in_array($pacients['_name'], $tablesToCheck)))
+    $sql .= " ALTER TABLE `{$pacients['_name']}`
+      ADD CONSTRAINT `pacients_ibfk_1` FOREIGN KEY (`{$pacients['id']}`) REFERENCES `{$people['_name']}` (`{$people['id']}`) ON DELETE CASCADE;";
+  if (!$check || ($check && in_array($schedules['_name'], $tablesToCheck)))
+    $sql .= " ALTER TABLE `{$schedules['_name']}`
+      ADD CONSTRAINT `schedules_ibfk_1` FOREIGN KEY (`{$schedules['medic']}`) REFERENCES `{$medics['_name']}` (`{$medics['id']}`);";
 
   $db->exec($sql);
   echo "Tables Created Successful";
