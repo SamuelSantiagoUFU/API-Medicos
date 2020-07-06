@@ -13,7 +13,7 @@ previamente, baseados na distância e na disponibilidade de horários.
 * [Uso](#uso)
   * [Login](#login)
   * [Logout](#logout)
-  * [Médicos](#medicos)
+  * [Médicos](#médicos)
     * [Listar](#listar-médicos)
     * [Listar por especialidade](#listar-médicos-por-especialidade)
     * [Listar disponíveis](#listar-médicos-disponíveis-para-atendimento)
@@ -95,8 +95,12 @@ O uso dos atributos é opcional
 * **-check:** verifica se todas as tabelas estão corretas.
 
 ### Uso
+[Índice](#índice)
+
 O uso é todo feito por chamadas HTTP/JS. O retorno de todas as chamadas é um objeto JSON que pode ser tratado da melhor maneira pelo cliente. Os exemplos aqui serão dados com base na função fetch, implementada no HTML5, mas podem ser facilmente adaptados para funcionar com AJAX.
 ### Login
+[Índice](#índice)
+
 ```apache
 $ POST /login
 ```
@@ -129,6 +133,8 @@ A resposta esperada é um JSON similar ao abaixo
 }
 ```
 ### Logout
+[Índice](#índice)
+
 ```apache
 $ GET /logout
 ```
@@ -152,6 +158,8 @@ A resposta esperada é um JSON similar ao abaixo
 }
 ```
 ### Médicos
+[Índice](#índice)
+
 #### Listar médicos
 Para listar os médicos existentes, pode-se fazer a seguinte chamada http
 ```apache
@@ -185,6 +193,8 @@ A resposta esperada é um JSON similar ao abaixo
 }
 ```
 #### Listar médicos por especialidade
+[Índice](#índice)
+
 ```apache
 $ GET /medic/list/specialist/{SPEC}
 ```
@@ -218,6 +228,8 @@ A resposta esperada é um JSON similar ao abaixo
 }
 ```
 #### Listar médicos disponíveis para atendimento
+[Índice](#índice)
+
 ```apache
 $ POST /medic/list/area/{PACIENT}
 ```
@@ -256,6 +268,8 @@ A resposta esperada é um JSON similar ao abaixo
 }
 ```
 #### Resgatar um médico específico
+[Índice](#índice)
+
 Também é possível resgatar um médico tendo o seu id. É útil para fazer alterações.
 ```apache
 $ GET /medic/get/{ID}
@@ -291,6 +305,8 @@ A resposta esperada é um JSON similar ao abaixo
 }
 ```
 #### Inserir um médico novo
+[Índice](#índice)
+
 ```apache
 $ POST /medic/post
 ```
@@ -335,6 +351,8 @@ A resposta esperada é um JSON similar ao abaixo
 }
 ```
 #### Atualizar um médico existente
+[Índice](#índice)
+
 ```apache
 $ POST /medic/put
 ```
@@ -380,6 +398,8 @@ A resposta esperada é um JSON similar ao abaixo
 }
 ```
 #### Bloquear um médico
+[Índice](#índice)
+
 ```apache
 $ POST /medic/block
 ```
@@ -405,6 +425,8 @@ A resposta esperada é um JSON similar ao abaixo
 }
 ```
 #### Desbloquear um médico
+[Índice](#índice)
+
 ```apache
 $ POST /medic/unblock
 ```
@@ -431,6 +453,8 @@ A resposta esperada é um JSON similar ao abaixo
 ```
 ### Pacientes
 #### Listar pacientes
+[Índice](#índice)
+
 Para listar os pacientes existentes, pode-se fazer a seguinte chamada http.
 O parâmetro {query} é opcional
 ```apache
@@ -467,6 +491,8 @@ A resposta esperada é um JSON similar ao abaixo
 }
 ```
 #### Resgatar um paciente específico
+[Índice](#índice)
+
 Também é possível resgatar um paciente tendo o seu id. É útil para fazer alterações.
 ```apache
 $ GET /pacient/get/{ID}
@@ -502,6 +528,8 @@ A resposta esperada é um JSON similar ao abaixo
 }
 ```
 #### Inserir um paciente novo
+[Índice](#índice)
+
 ```apache
 $ POST /pacient/post
 ```
@@ -540,6 +568,8 @@ A resposta esperada é um JSON similar ao abaixo
 }
 ```
 #### Atualizar um paciente existente
+[Índice](#índice)
+
 ```apache
 $ POST /pacient/put
 ```
@@ -579,6 +609,8 @@ A resposta esperada é um JSON similar ao abaixo
 }
 ```
 #### Bloquear um paciente
+[Índice](#índice)
+
 ```apache
 $ POST /pacient/block
 ```
@@ -604,6 +636,8 @@ A resposta esperada é um JSON similar ao abaixo
 }
 ```
 #### Desbloquear um paciente
+[Índice](#índice)
+
 ```apache
 $ POST /pacient/unblock
 ```
@@ -630,6 +664,8 @@ A resposta esperada é um JSON similar ao abaixo
 ```
 ### Agenda e Horários
 #### Listar a agenda de um médico
+[Índice](#índice)
+
 ```apache
 $ GET /schedule/list/{MEDIC}
 ```
@@ -656,6 +692,8 @@ A resposta esperada é um JSON similar ao abaixo
 }
 ```
 #### Resgatar um horário específico
+[Índice](#índice)
+
 ```apache
 $ GET /schedule/get/{ID}
 ```
@@ -678,6 +716,8 @@ A resposta esperada é um JSON similar ao abaixo
 }
 ```
 #### Inserir um horário novo
+[Índice](#índice)
+
 ```apache
 $ POST /schedule/post
 ```
@@ -706,6 +746,8 @@ A resposta esperada é um JSON similar ao abaixo
 }
 ```
 #### Atualizar um horário existente
+[Índice](#índice)
+
 ```apache
 $ POST /schedule/put
 ```
@@ -735,6 +777,8 @@ A resposta esperada é um JSON similar ao abaixo
 }
 ```
 #### Deletar um horário existente
+[Índice](#índice)
+
 ```apache
 $ POST /schedule/delete
 ```
@@ -761,6 +805,8 @@ A resposta esperada é um JSON similar ao abaixo
 ```
 ### Exames
 #### Resgatar um exame específico
+[Índice](#índice)
+
 ```apache
 $ GET /exam/get/{ID}
 ```
@@ -791,6 +837,8 @@ A resposta esperada é um JSON similar ao abaixo
 }
 ```
 #### Inserir um exame novo
+[Índice](#índice)
+
 ```apache
 $ POST /exam/post
 ```
@@ -819,6 +867,8 @@ A resposta esperada é um JSON similar ao abaixo
 }
 ```
 #### Atualizar um exame existente
+[Índice](#índice)
+
 ```apache
 $ POST /exam/put
 ```
@@ -848,6 +898,8 @@ A resposta esperada é um JSON similar ao abaixo
 }
 ```
 #### Deletar um exame existente
+[Índice](#índice)
+
 ```apache
 $ POST /exam/delete
 ```
@@ -874,6 +926,8 @@ A resposta esperada é um JSON similar ao abaixo
 ```
 ### Consultas
 #### Resgatar uma consulta específica
+[Índice](#índice)
+
 ```apache
 $ GET /consult/get/{ID}
 ```
@@ -903,6 +957,8 @@ A resposta esperada é um JSON similar ao abaixo
 }
 ```
 #### Inserir uma consulta nova
+[Índice](#índice)
+
 ```apache
 $ POST /consult/post
 ```
@@ -932,6 +988,8 @@ A resposta esperada é um JSON similar ao abaixo
 }
 ```
 #### Atualizar uma consulta existente
+[Índice](#índice)
+
 ```apache
 $ POST /consult/put
 ```
@@ -962,6 +1020,8 @@ A resposta esperada é um JSON similar ao abaixo
 }
 ```
 #### Deletar uma consulta existente
+[Índice](#índice)
+
 ```apache
 $ POST /consult/delete
 ```
