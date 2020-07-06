@@ -6,3 +6,4 @@ RewriteCond %{HTTP_HOST} ^(www\.)?jefersson\.
 RewriteRule ^(.*)$ /public/$1 [L]
 php_value memory_limit 128M
 php_value output_buffering off
+ErrorDocument 403 /403.php

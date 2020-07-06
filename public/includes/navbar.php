@@ -1,11 +1,8 @@
-<?
-$logged = isset($_COOKIE['login']) && $_COOKIE['login'];
-$admin = $logged && $_COOKIE['admin'];
-?>
 <nav class="white">
   <div class="nav-wrapper black-text">
     <a href="/" class="brand-logo">Médicos</a>
-    <?=$admin?'<a href="#" data-target="navbar-admin" class="show-on-med-and-down sidenav-trigger right"><i class="material-icons">menu</i></a>':''?>
+    <?=$admin?'<a href="#" data-target="navbar-admin" class="show-on-med-and-down sidenav-trigger right"><i class="material-icons">menu</i></a>':
+    '<a href="#" data-target="navbar" class="sidenav-trigger right"><i class="material-icons">menu</i></a>'?>
     <ul class="right hide-on-med-and-down">
       <?if (!$logged):?>
       <li><a href="/register.php" class="tooltipped" data-tooltip="Registrar"><i class="material-icons">person_add</i></a></li>
@@ -24,5 +21,10 @@ $admin = $logged && $_COOKIE['admin'];
   <li><a href="/admin/pacients.php"><i class="material-icons">sick</i>Pacientes</a></li>
   <li><a href="mobile.html"><i class="material-icons">schedule</i>Horários</a></li>
   <li><a href="/logout.php"><i class="material-icons">power_settings_new</i>Sair</a></li>
+</ul>
+<?elseif (!$logged):?>
+<ul class="sidenav" id="navbar">
+  <li><a href="/register.php"><i class="material-icons">person_add</i>Registrar</a></li>
+  <li><a href="/login.php"><i class="material-icons">https</i>Login</a></li>
 </ul>
 <?endif;?>

@@ -132,7 +132,7 @@ class Medic extends Person
     $value = "%{$value}%";
     $qb = new QueryBuilder;
     $results = $qb->table(TB_MEDICS['_name'].' PA')->join('INNER JOIN '.TB_PEOPLE['_name'].' PO ON PO.'.TB_PEOPLE['id'].' = PA.'.TB_MEDICS['id'])
-              ->whereAND(['PO.'.TB_PEOPLE['active'],'PO.'.TB_PEOPLE['name'].' LIKE ?'])->select($value);
+              ->whereAND(['PO.'.TB_PEOPLE['name'].' LIKE ?'])->select($value);
     if (!$results || empty($results)) {
       $result['msg'] = $this->replaceVars(MSG['no_reg']);
       return $result;

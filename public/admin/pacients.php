@@ -1,5 +1,5 @@
-<?session_start();$title="ADM Pacientes";$js="admin/pacient.js";
-require '../includes/header.php'; require '../includes/navbar.php'?>
+<?$title="ADM Pacientes";$js="admin/pacient.js";
+require '../includes/adminRequire.php'?>
 <main>
   <div class="container">
     <div class="row">

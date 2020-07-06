@@ -1,4 +1,4 @@
-<?require 'includes/header.php'; require 'includes/navbar.php'?>
+<? require 'includes/header.php'; require 'includes/navbar.php'?>
 <div class="container">
   <main>
     <div class="row">
@@ -38,7 +38,7 @@
         method: "POST",
         body: data,
         credentials: 'include'
-      }).then(data => console.log(data.json()))
+      }).then(data => data.json())
       .then(data => {
         if (data.logado) {
           window.location.href = '/';

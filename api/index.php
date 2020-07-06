@@ -49,7 +49,7 @@ $routes = array(
   '/consult/delete' => 'deleteConsult',
   '/login' => 'login',
   '/logout' => 'logout',
-  '/getInfo/{key:string}' => 'getSessionVal'
+  '/verify' => 'verifyUser'
 );
 url_response($routes);
 ?>

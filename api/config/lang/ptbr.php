@@ -24,6 +24,7 @@ define('MSG', [
   'user_not_match' => 'Email e/ou senha incorretos',
   'logout_success' => 'Deslogado com sucesso!',
   'logout_fail' => 'Falha ao deslogar',
-  'user_block' => 'Este usuário se encontra bloqueado.'
+  'user_block' => 'Este usuário se encontra bloqueado.',
+  'unauthorized' => 'Você não tem permissão para acessar esta página'
 ]);
 ?>
