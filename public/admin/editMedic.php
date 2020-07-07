@@ -102,7 +102,7 @@ include '../includes/uf.php';
                   <?
                   foreach ($ufs as $uf => $state) {
                     $selected = $uf == $medic->uf ? ' selected' : '';
-                    echo "<option value='$uf'$selected>$uf</option>";
+                    echo "<option value='$uf'$selected>$state</option>";
                   }
                   ?>
                 </select>
