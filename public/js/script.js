@@ -41,6 +41,10 @@ Date.prototype.getStringDate = function(string) {
   }
   return string;
 }
+Node.prototype.insertAfter = function(newNode) {
+  this.parentNode.insertBefore(newNode, this.nextSibling);
+  return this;
+}
 Array.prototype.toNumber = function() {
   for (var i = 0; i < this.length; i++) {
     this[i] = Number(this[i]);

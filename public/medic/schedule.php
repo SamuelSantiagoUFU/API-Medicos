@@ -6,22 +6,15 @@ require '../includes/medicRequire.php'?>
       <h3 class="col s12 center">Horários</h3>
     </div>
     <div class="row">
-      <table class="col s12 centered responsive-table" id="schedule">
-        <thead>
-          <tr>
-            <th>Domingo</th>
-            <th>Segunda</th>
-            <th>Terça</th>
-            <th>Quarta</th>
-            <th>Quinta</th>
-            <th>Sexta</th>
-            <th>Sábado</th>
-          </tr>
-        </thead>
-        <tbody>
-          
-        </tbody>
-      </table>
+      <ul class="tabs tabs-fixed-width" id="schedule">
+        <li class="tab"><a href="#day0">Domingo</a></li>
+        <li class="tab"><a href="#day1">Segunda</a></li>
+        <li class="tab"><a href="#day2">Terça</a></li>
+        <li class="tab"><a href="#day3">Quarta</a></li>
+        <li class="tab"><a href="#day4">Quinta</a></li>
+        <li class="tab"><a href="#day5">Sexta</a></li>
+        <li class="tab"><a href="#day6">Sábado</a></li>
+      </ul>
       <div class="center" id="loading">
         <div class="preloader-wrapper big active">
           <div class="spinner-layer spinner-blue">
