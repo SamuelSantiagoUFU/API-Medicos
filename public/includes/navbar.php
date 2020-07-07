@@ -30,4 +30,9 @@
   <li><a href="/register.php"><i class="material-icons">person_add</i>Registrar</a></li>
   <li><a href="/login.php"><i class="material-icons">https</i>Login</a></li>
 </ul>
+<?elseif ($medic):?>
+<ul class="sidenav" id="navbar">
+  <li><a href="/medic/consults.php"><i class="material-icons">local_hospital</i>Consultas</a></li>
+  <li><a href="/medic/schedule.php"><i class="material-icons">schedule</i>Horários</a></li>
+</ul>
 <?endif;?>

@@ -1,14 +1,27 @@
-<?$title="Consultas";$js=["medic/MindFusion.Scheduling.js","medic/GoogleSchedule.js","medic/TimeForm.js"];
+<?$title="Horários";$js="medic/medic.js";
 require '../includes/medicRequire.php'?>
 <main>
   <div class="container">
     <div class="row">
-      <h3 class="col s12 center">Consultas</h3>
+      <h3 class="col s12 center">Horários</h3>
     </div>
     <div class="row">
-      <div class="col s12" style="height: 100vh">
-        <div id="calendar" style="height: 100%; width: 100%;"></div>
-      </div>
+      <table class="col s12 centered responsive-table" id="schedule">
+        <thead>
+          <tr>
+            <th>Domingo</th>
+            <th>Segunda</th>
+            <th>Terça</th>
+            <th>Quarta</th>
+            <th>Quinta</th>
+            <th>Sexta</th>
+            <th>Sábado</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        </tbody>
+      </table>
       <div class="center" id="loading">
         <div class="preloader-wrapper big active">
           <div class="spinner-layer spinner-blue">
@@ -52,4 +65,7 @@ require '../includes/medicRequire.php'?>
     </div>
   </div>
 </main>
+<script>
+  window.medic = <?=$medic->id?>
+</script>
 <?require '../includes/footer.php';?>
