@@ -4,6 +4,12 @@
 }
 fieldset {
   border: 1px solid #CCC;
+  padding: 0 2em !important;
+}
+@media only screen and (max-width : 992px) {
+  fieldset {
+    padding: 0 0.75em !important;
+  }
 }
 .input-field input, .select-wrapper input, .input-field textarea {
   padding: 0 0.2em !important;
