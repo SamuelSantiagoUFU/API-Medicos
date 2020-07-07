@@ -6,6 +6,54 @@ function appendChilds(el, childs) {
   });
   return _this;
 }
+function card(options = {tam:'s12 m6',bg:'blue-grey darken-1',color:'white',title:'',content:'',actions:[]}) {
+  if (!options.tam) options.tam = 's12 m6';
+  if (!options.bg) options.bg = 'blue-grey darken-1';
+  if (!options.color) options.color = 'white';
+  if (!options.title) options.title = '';
+  if (!options.content) options.content = '';
+  if (!options.actions) options.actions = [];
+
+  const tam = options.tam.split(' ')
+  const bg = options.bg.split(' ')
+  tam.push('col');
+  bg.push('card');
+  var cardParent = document.createElement('div');
+  var card = document.createElement('div');
+  var content = document.createElement('div');
+  var title = document.createElement('span');
+  var p = document.createElement('p');
+
+  tam.forEach((item, i) => {
+    cardParent.classList.add(item);
+  });
+  bg.forEach((item, i) => {
+    card.classList.add(item);
+  });
+  content.classList.add('card-content',options.color+'-text');
+  title.classList.add('card-title');
+  title.innerHTML = options.title;
+  if (typeof options.content == 'string')
+    p.innerHTML = options.content;
+  else
+    p.appendChild(options.content);
+  appendChilds(content, [title, p]);
+  card.appendChild(content);
+
+  if (options.actions.length > 0) {
+    var actionDiv = document.createElement('div');
+    for (var action of options.actions) {
+      var link = document.createElement('a');
+      a.href = action.link;
+      a.innerHTML = action.text;
+      actionDiv.appendChild(a);
+    }
+    card.appendChild(actionDiv);
+  }
+  cardParent.appendChild(card);
+
+  return cardParent;
+}
 document.addEventListener('DOMContentLoaded', function() {
   M.AutoInit();
   var sidenav = document.querySelectorAll('.sidenav');
@@ -50,4 +98,17 @@ Array.prototype.toNumber = function() {
     this[i] = Number(this[i]);
   }
   return this;
+}
+function getParams(param) {
+  var query = location.search.slice(1);
+  var partes = query.split('&');
+  var data = {};
+  partes.forEach(function (parte) {
+      var chaveValor = parte.split('=');
+      var chave = chaveValor[0];
+      var valor = chaveValor[1];
+      data[chave] = valor;
+  });
+  if (param) return data[param];
+  return data;
 }
