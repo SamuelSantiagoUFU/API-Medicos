@@ -1,20 +1,38 @@
-nav a {
-  color: inherit !important;
+* {
+    margin: 0;
+    padding: 0;
 }
-nav {
-  box-shadow: none;
-  border-bottom: 1px solid rgba(0,0,0,0.2);
+fieldset {
+  border: 1px solid #CCC;
 }
-.sidenav-fixed {
-  box-shadow: none;
-  border-left: 1px solid rgba(0,0,0,0.2);
+.input-field input, .select-wrapper input, .input-field textarea {
+  padding: 0 0.2em !important;
+  border: 1px solid #CCC !important;
+  border-left: none !important;
+  border-top: none !important;
+  box-shadow: 2px 2px 2px rgba(0,0,0,0.2) !important;
 }
-.sidenav-fixed + main {
-  padding-right: 300px;
+.input-field input + label, .select-wrapper + label, .input-field textarea + label {
+  left: 1.25rem !important;
 }
-
-@media only screen and (max-width : 992px) {
-  .sidenav-fixed + main {
-    padding-right: 0;
-  }
+.input-field input.invalid, .select-wrapper input.invalid, .input-field textarea.invalid {
+  border-color: #F44336 !important;
+  box-shadow: 2px 2px 2px rgba(255,0,0,0.2) !important;
+}
+.input-field input.invalid + label, .select-wrapper input.invalid + label, .input-field textarea.invalid + label {
+  color: #F44336;
+  text-shadow: 0 0 5px rgba(255,0,0,0.5);
+}
+.input-field input.valid, .select-wrapper input.valid, .input-field textarea.valid {
+  border-color: #4CAF50 !important;
+  box-shadow: 2px 2px 2px rgba(0,255,0,0.2) !important;
+}
+.input-field input.valid + label, .select-wrapper input.valid + label, .input-field textarea.valid + label {
+  color: #4CAF50;
+  text-shadow: 0 0 5px rgba(0,255,0,0.5);
+}
+.btn:hover {
+  background: #FB0;
+  box-shadow: inset 2px 2px 2px rgba(0,0,0,0.2);
+  text-shadow: none;
 }

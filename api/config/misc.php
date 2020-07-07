@@ -14,6 +14,6 @@ define('MISC', [
   'max_distance' => 3000,
   'valid_cache' => 30,
   'valid_cache_unit' => 's',
-  'valid_session' => 30 * 60
+  'valid_session' => 5 * 60 * 60
 ]);
 ?>

@@ -14,13 +14,5 @@ if (is_array($js)) {
   echo "<script src='/js/$js'></script>";
 }
 ?>
-<script>
-  const apiLink = "http://api.jefersson.net.br";
-  document.addEventListener('DOMContentLoaded', function() {
-    M.AutoInit();
-    var sidenav = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(sidenav, {edge:'right'});
-  });
-</script>
 </body>
 </html>

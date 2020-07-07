@@ -59,7 +59,7 @@
             <label for="pass2">Confirmação de Senha</label>
             <span class="helper-text" data-error="As senhas não conferem" data-success=""></span>
           </div>
-          <div class="col s12 m4 xl3">
+          <div class="input-field col s12 m4 xl3">
             <div class="col s12 m6">
               <label>
                 <input name="sex" value="M" type="radio" checked />
@@ -73,11 +73,11 @@
               </label>
             </div>
           </div>
-          <div class="col s12 m4">
+          <div class="input-field col s12 m4">
             <input type="text" class="datepicker" name="born" id="born" placeholder="Data de Nascimento">
           </div>
           <div class="col s12 m4 xl5 right-align">
-            <button type="submit" class="btn green waves-effect waves-light">Cadastrar</button>
+            <button type="submit" class="btn waves-effect waves-light">Cadastrar</button>
           </div>
         </div>
       </form>
@@ -95,7 +95,6 @@
         return;
       } else {
         var data = new FormData(registro);
-        console.log(data);
         fetch(apiLink+'/pacient/post', {
           method: "POST",
           body: data,

@@ -21,7 +21,7 @@ class Cache {
     return file_put_contents(self::$file, $content);
   }
 
-  private static function timeSeconds($time, $unit) {
+  public static function timeSeconds($time, $unit) {
     $unit = strtoupper($unit);
     if ($unit == 'H') {
       return $time * 3600;

@@ -10,6 +10,7 @@ $uf = filter_var($_POST['type'], FILTER_SANITIZE_SPECIAL_CHARS);
 $clinic = filter_var($_POST['clinic'], FILTER_SANITIZE_SPECIAL_CHARS);
 $register = filter_var($_POST['register'], FILTER_SANITIZE_SPECIAL_CHARS);
 $cns = filter_var($_POST['cns'], FILTER_SANITIZE_SPECIAL_CHARS);
+$pass = password_hash($_POST['pass'], PASSWORD_DEFAULT);
 
 $newPerson->title = $title;
 $newPerson->type = $type;
@@ -17,5 +18,6 @@ $newPerson->uf = $uf;
 $newPerson->register = $register;
 $newPerson->clinic = $clinic;
 $newPerson->cns = $cns;
+$newPerson->pass = $pass;
 echo Classes\Base\Parse::toJson($newPerson->insert());
 ?>

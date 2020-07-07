@@ -10,17 +10,17 @@
       <form method="post" class="col s12" id="login">
         <div class="row">
           <div class="input-field col s12">
-            <input type="email" name="email" required id="email">
+            <input type="email" name="email" required id="email" class="validate">
             <label for="email">Email</label>
           </div>
           <div class="input-field col s12">
-            <input type="password" name="pass" required id="pass">
+            <input type="password" name="pass" required id="pass" class="validate">
             <label for="pass">Senha</label>
           </div>
         </div>
         <div class="row">
           <div class="col s12 right-align">
-            <button type="submit" class="btn green waves-effect waves-light">Entrar</button>
+            <button type="submit" class="btn waves-effect waves-light">Entrar</button>
           </div>
         </div>
       </form>

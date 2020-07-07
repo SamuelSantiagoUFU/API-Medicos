@@ -39,10 +39,12 @@ function loadTable(query = '') {
         spec.innerHTML = item.clinic || '-';
         cns.innerHTML = item.cns || '-';
 
-        var editButton = document.createElement('button');
-        var blockButton = document.createElement('button');
+        var editButton = document.createElement('a');
+        var blockButton = document.createElement('a');
         var editIcon = document.createElement('i');
         var blockIcon = document.createElement('i');
+        editButton.href = "/admin/editMedic.php?medic="+item.id;
+        blockButton.href = "#block";
         editButton.classList.add('btn','btn-small','blue','waves-effect','waves-light');
         blockButton.classList.add('btn','btn-small',(item.isActive?'red':'green'),'waves-effect','waves-light');
         editIcon.classList.add('material-icons');
