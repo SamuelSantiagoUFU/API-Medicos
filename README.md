@@ -50,6 +50,8 @@ previamente, baseados na distância e na disponibilidade de horários.
 Primeiramente, coloque a pasta **api** no diretório raiz do site e siga com as
 configurações indicadas.
 
+Renomeie o arquivo **environment** para **environment.php** e substitua a *KEY* pela sua chave de API do google.
+
 ### Configurações
 Dentro da pasta **config** estão todas as configurações que se fazem necessárias
 cada qual no seu próprio arquivo/pasta. Lembrando que todos os arquivos de configurações possuem o esquema

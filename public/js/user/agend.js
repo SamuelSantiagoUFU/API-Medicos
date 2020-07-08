@@ -25,14 +25,15 @@ document.addEventListener('DOMContentLoaded', function() {
             dataType: 'html',
             data: {
               name: item.name,
-              value: item.value
+              value: item.value,
+              id: item.id
             }
           })
           .done(response => $('#medicos').html(response))
           .fail(error => console.error(error));
         });
       } else {
-
+        $('#medicos').html("<h4 class='center'>Não existem médicos disponíveis no momento, tente novamente mais tarde!</h4>");
       }
     }).then(() => loading.classList.add('hide')).catch(error => console.error(error));
   });

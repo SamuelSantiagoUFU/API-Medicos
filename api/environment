@@ -1,0 +1,3 @@
+<?php
+$_ENV["GOOGLE_API_KEY"] = "key";
+?>

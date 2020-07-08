@@ -8,7 +8,7 @@
       <p class="right-align flow-text">R$ <?=number_format($_GET['value'],2,',','.')?></p>
     </div>
     <div class="card-action">
-      <a href="#" class="green-text">Agendar</a>
+      <a href="#<?=$_GET['id']?>" class="green-text">Agendar</a>
     </div>
   </div>
 </div>
