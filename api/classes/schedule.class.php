@@ -183,7 +183,6 @@ class Schedule extends Objecto
       $date->format('H:i'),
       $uf
     ]);
-    return $date->format('H:i');
     if (!$results || empty($results)) {
       $result['msg'] = $this->replaceVars(MSG['no_reg']);
       return $result;

@@ -27,7 +27,6 @@ $pacient = (new Classes\Pacient)->get($pacient);
 $medicsInWork = (new Classes\Schedule)->listAvailable($data, $uf);
 $consults = (new Classes\Consult)->listDate($data, $uf);
 $medicsAvailable = [];
-die(Classes\Base\Parse::toJson($medicsInWork));
 // Se não existir o paciente, já mostra o erro
 if (!$pacient['code']) {
   die(Classes\Base\Parse::toJson($pacient));
