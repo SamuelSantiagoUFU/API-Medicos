@@ -247,7 +247,8 @@ fetch('/medic/list/area/{PACIENT}', {
 ```
 ##### Dados necessários
 * **PACIENT:** Id do paciente que está procurando por uma consulta
-* **data:** Data e hora da consulta
+* **data:** Data da consulta
+* **hora:** Hora da consulta
 * **uf:** UF que está procurando
 * **clinic:** Especialização do médico
 

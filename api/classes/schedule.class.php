@@ -183,6 +183,7 @@ class Schedule extends Objecto
       $date->format('H:i'),
       $uf
     ]);
+    return $date->format('H:i');
     if (!$results || empty($results)) {
       $result['msg'] = $this->replaceVars(MSG['no_reg']);
       return $result;
@@ -192,6 +193,7 @@ class Schedule extends Objecto
       $result['total']++;
       array_push($result['result'], $p->loadAttributes($r));
     }
+
     $result['code'] = 200;
     $result['msg'] = $this->replaceVars(MSG['regs_found']);
     return $result;

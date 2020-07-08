@@ -5,7 +5,7 @@ require '../includes/medicRequire.php'?>
     <h4 class="center">Novo exame</h4>
     <div class="row">
       <form id="exam" autocomplete="off" class="col s12" method="post">
-        <input type="hidden" name="id" value="<?=$_GET['id']?>">
+        <input type="hidden" name="consult" value="<?=$_GET['id']?>">
         <div class="row">
           <div class="input-field col s12 m7">
             <input class="validate" name="desc" type="text" id="desc" required>
@@ -16,7 +16,7 @@ require '../includes/medicRequire.php'?>
             <label for="qtd">Quantidade de Amostras</label>
           </div>
           <div class="input-field col s12">
-            <select name="type" class="validate" required>
+            <select name="type" class="validate browser-default" id="type" required>
               <option value="S">Sangue</option>
               <option value="F">Fezes</option>
               <option value="U">Urina</option>
@@ -88,6 +88,9 @@ require '../includes/medicRequire.php'?>
           </div>
         </div>
       </fieldset>
+    </div>
+    <div class="row">
+
     </div>
   </div>
 </main>

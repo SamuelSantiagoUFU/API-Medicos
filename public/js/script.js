@@ -1,4 +1,26 @@
 const apiLink = "http://api.jefersson.net.br";
+const timepickerOptions = {
+  twelveHour: false
+}
+const datepickerOptions = {
+  minDate: new Date(),
+  defaultDate: new Date(),
+  i18n: {
+    months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+    monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+    weekdays: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabádo'],
+    weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+    weekdaysAbbrev: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+    today: 'Hoje',
+    clear: 'Limpar',
+    cancel: 'Sair',
+    done: 'Confirmar'
+  },
+  format: 'dd mmmm, yyyy',
+  parse: (e) => {
+    return e.format('Y-m-d')
+  }
+}
 function appendChilds(el, childs) {
   var _this = el;
   childs.forEach((item, i) => {

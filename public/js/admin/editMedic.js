@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
       method: "POST",
       body: data,
       credentials: 'include'
-    }).then(data => console.log(data.json()))
+    }).then(data => data.json())
     .then(data => {
       M.toast({html: data.msg})
     }).catch(error => console.error(error));

@@ -1,5 +1,5 @@
 <?php
-if (!Classes\Validate::validatePOST($_POST) || !Classes\Validate::validateGET($_GET)) {
+if (!Classes\Validate::validatePOST($_POST)) {
   die(Classes\Base\Parse::toJson(['code'=>0, 'msg'=>MSG['not_valid']]));
 }
 function distance($origin, $destinations) {
@@ -18,15 +18,16 @@ function distance($origin, $destinations) {
   return $distances;
 }
 
-$data = new DateTime(filter_var($_POST['data'], FILTER_SANITIZE_SPECIAL_CHARS));
-$uf = filter_var($_POST['type'], FILTER_SANITIZE_SPECIAL_CHARS); // Estado do médico (para não pegar tudo)
-$pacient = filter_var($_GET['id'], FILTER_VALIDATE_INT);
+$data = new DateTime(filter_var($_POST['data'].' '.$_POST['hora'], FILTER_SANITIZE_SPECIAL_CHARS));
+$uf = filter_var($_POST['uf'], FILTER_SANITIZE_SPECIAL_CHARS); // Estado do médico (para não pegar tudo)
+$pacient = filter_var($_COOKIE['id'], FILTER_VALIDATE_INT);
 $clinic = filter_var($_POST['clinic'], FILTER_SANITIZE_SPECIAL_CHARS);
 
 $pacient = (new Classes\Pacient)->get($pacient);
 $medicsInWork = (new Classes\Schedule)->listAvailable($data, $uf);
 $consults = (new Classes\Consult)->listDate($data, $uf);
 $medicsAvailable = [];
+die(Classes\Base\Parse::toJson($medicsInWork));
 // Se não existir o paciente, já mostra o erro
 if (!$pacient['code']) {
   die(Classes\Base\Parse::toJson($pacient));
