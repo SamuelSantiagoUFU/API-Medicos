@@ -5,20 +5,36 @@ document.addEventListener('DOMContentLoaded', function() {
   var timepickers = document.querySelectorAll('.timepicker');
   var instancesT = M.Timepicker.init(timepickers, timepickerOptions);
   var edit = document.getElementById("consulta");
+  var loading = document.getElementById('loading');
   edit.addEventListener('submit', (e) => {
-    console.clear();
     e.preventDefault();
+    loading.classList.remove('hide');
     var data = new FormData(edit);
     data.set('data', M.Datepicker.getInstance($('#data')).date.format('Y-m-d'));
     fetch(apiLink+'/medic/list/area/8', {
       method: "POST",
       body: data,
       credentials: 'include'
-    }).then(data => console.log(data.json()))
+    }).then(data => data.json())
     .then(data => {
-      console.log(data);
-      M.toast({html: data.msg})
-    }).catch(error => console.error(error));
+      if (data.length > 0) {
+        data.forEach((item, i) => {
+          $.ajax({
+            url: '/users/medics.php',
+            type: 'GET',
+            dataType: 'html',
+            data: {
+              name: item.name,
+              value: item.value
+            }
+          })
+          .done(response => $('#medicos').html(response))
+          .fail(error => console.error(error));
+        });
+      } else {
+
+      }
+    }).then(() => loading.classList.add('hide')).catch(error => console.error(error));
   });
 });
 function getSpecs() {

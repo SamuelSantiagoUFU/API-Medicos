@@ -16,6 +16,7 @@ define('TB_MEDICS', [
   'uf' => 'uf',
   'register' => 'register',
   'clinic' => 'clinic',
-  'cns' => 'cns'
+  'cns' => 'cns',
+  'value' => 'value'
 ]);
 ?>

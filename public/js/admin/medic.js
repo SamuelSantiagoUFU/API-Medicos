@@ -11,7 +11,7 @@ function loadTable(query = '') {
   var body = table.tBodies[0];
   var loadingBar = document.getElementById('loading');
   $(body).empty();
-  $(loadingBar).show();
+  loading.classList.remove('hide')
   if (query != '') {
     query = '/' + query;
   }
@@ -58,5 +58,5 @@ function loadTable(query = '') {
         body.appendChild(row);
       });
     }
-  }).then(() => $(loadingBar).hide()).catch((error) => console.error(error));
+  }).then(() => loading.classList.add('hide')).catch((error) => console.error(error));
 }

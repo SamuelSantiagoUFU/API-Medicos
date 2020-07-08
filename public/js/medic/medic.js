@@ -4,7 +4,7 @@ $(() => {
 function loadTable() {
   var tabs = document.getElementById('schedule');
   var loadingBar = document.getElementById('loading');
-  $(loadingBar).show();
+  loading.classList.remove('hide')
   fetch('http://api.jefersson.net.br/schedule/list/'+window.medic, {credentials: 'include'})
   .then((data) => data.json())
   .then((data) => {
@@ -38,5 +38,5 @@ function loadTable() {
       }
       var instance = M.Tabs.init(tabs, {swipeable:true});
     }
-  }).then(() => $(loadingBar).hide()).catch((error) => console.error(error));
+  }).then(() => loading.classList.add('hide')).catch((error) => console.error(error));
 }

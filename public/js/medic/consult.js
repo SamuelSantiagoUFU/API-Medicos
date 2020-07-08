@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   const consult = getParams('id');
   const loadingBar = document.getElementById('loading');
-  $(loadingBar).show();
+  loading.classList.remove('hide')
   fetch(apiLink+'/consult/get/'+consult, {credentials: 'include'})
     .then(data => data.json())
     .then((data) => {
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
           cardsContainer.appendChild(newCard);
         });
       }
-  }).then(() => $(loadingBar).hide()).catch(error => console.error(error));
+  }).then(() => loading.classList.add('hide')).catch(error => console.error(error));
 });
 
 function editExam(id, e) {

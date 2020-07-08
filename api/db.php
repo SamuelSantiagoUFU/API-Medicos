@@ -101,6 +101,7 @@ try {
     `{$medics['register']}` varchar(255) NOT NULL,
     `{$medics['clinic']}` varchar(255) NOT NULL,
     `{$medics['cns']}` varchar(255) NOT NULL,
+    `{$medics['value']}` decimal(10,2) NOT NULL,
     PRIMARY KEY (`{$medics['id']}`)
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
   $sqlPacients = "CREATE TABLE IF NOT EXISTS `{$pacients['_name']}` (

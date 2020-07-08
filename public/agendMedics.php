@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="row">
-      <form id="consulta" class="col s12" method="get" action="#" autocomplete="off">
+      <form id="consulta" class="col s12" method="post" autocomplete="off">
         <div class="row">
           <div class="input-field col s12 m6 l5">
             <input type="text" class="autocomplete validate" id="spec" name="clinic" required>
@@ -39,6 +39,10 @@
           </div>
         </div>
       </form>
+    </div>
+    <?$hidden = 'hide';include 'includes/loading.php'?>
+    <div class="row">
+      <div class="col s12" id="medicos"></div>
     </div>
   </div>
 </main>

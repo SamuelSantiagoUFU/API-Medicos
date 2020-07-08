@@ -13,6 +13,7 @@ class Medic extends Person
   public $register;
   public $clinic;
   public $cns;
+  public $value;
 
   /**
    * @function loadAttributes
@@ -29,6 +30,7 @@ class Medic extends Person
     $this->register = $result[TB_MEDICS['register']];
     $this->clinic = $result[TB_MEDICS['clinic']];
     $this->cns = $result[TB_MEDICS['cns']];
+    $this->value = $result[TB_MEDICS['value']];
     if ($readed) $this->consults = (new Consult)->listMedic($result[TB_MEDICS['id']]);
     return $this;
   }
@@ -54,7 +56,8 @@ class Medic extends Person
         $this->uf,
         $this->register,
         $this->clinic,
-        $this->cns
+        $this->cns,
+        $this->value
       ]);
       if ($result === false) {
         parent::_delete($person['code']);
@@ -90,7 +93,8 @@ class Medic extends Person
         $this->uf,
         $this->register,
         $this->clinic,
-        $this->cns
+        $this->cns,
+        $this->value
       ], $whereValues);
       if ($result === false) {
         return ['code' => 0, 'msg' => $this->replaceVars(MSG['no_data'])];
