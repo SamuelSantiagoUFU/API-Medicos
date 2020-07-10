@@ -1,4 +1,4 @@
-<?require_once 'auth.php';?>
+<?$apiLink = 'LINK_DA_API';require_once 'auth.php';?>
 <!DOCTYPE html>
 <html lang="pt-br" dir="ltr">
   <head>

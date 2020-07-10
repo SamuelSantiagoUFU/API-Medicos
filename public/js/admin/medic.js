@@ -15,7 +15,7 @@ function loadTable(query = '') {
   if (query != '') {
     query = '/' + query;
   }
-  fetch('http://api.jefersson.net.br/medic/list' + query)
+  fetch(apiLink+'/medic/list' + query)
   .then((data) => data.json())
   .then((data) => {
     if (!data.code)

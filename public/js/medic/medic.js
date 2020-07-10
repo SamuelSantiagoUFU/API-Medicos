@@ -5,7 +5,7 @@ function loadTable() {
   var tabs = document.getElementById('schedule');
   var loadingBar = document.getElementById('loading');
   loading.classList.remove('hide')
-  fetch('http://api.jefersson.net.br/schedule/list/'+window.medic, {credentials: 'include'})
+  fetch(apiLink+'/schedule/list/'+window.medic, {credentials: 'include'})
   .then((data) => data.json())
   .then((data) => {
     if (!data.code)

@@ -20,7 +20,6 @@
 <?if ($admin):?>
 <ul class="sidenav sidenav-fixed" id="navbar-admin">
   <li><a href="/admin/medics.php"><i class="material-icons">medical_services</i>Médicos</a></li>
-  <li><a href="badges.html"><i class="material-icons">local_hospital</i>Consultas</a></li>
   <li><a href="/admin/pacients.php"><i class="material-icons">sick</i>Pacientes</a></li>
   <li><a href="/admin/schedule.php"><i class="material-icons">schedule</i>Horários</a></li>
   <li><a href="/logout.php"><i class="material-icons">power_settings_new</i>Sair</a></li>

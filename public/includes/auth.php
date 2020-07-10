@@ -1,5 +1,5 @@
 <?
-$ch = curl_init('http://api.jefersson.net.br/verify');
+$ch = curl_init($apiLink.'/verify');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_COOKIE, 'id='.($_COOKIE['id'] ?? 0));
 $level = json_decode(curl_exec($ch));
